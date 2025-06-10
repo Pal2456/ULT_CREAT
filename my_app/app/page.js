@@ -64,6 +64,7 @@ export default function Home() {
       alert('สร้างรายการน้ำมันสำเร็จ!');
     } catch (error) {
       console.error('Validation failed:', error);
+      
     }
   };
 
