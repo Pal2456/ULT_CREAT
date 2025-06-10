@@ -24,6 +24,7 @@ export default function Home() {
               <Select placeholder="ประเภทรถ" allowClear>
                 <Option value="4ล้อ">4 ล้อ</Option>
                 <Option value="6ล้อ">6 ล้อ</Option>
+                <Option value="10ล้อ">10 ล้อ</Option>
               </Select>
             </Form.Item>
           </Col>
@@ -59,6 +60,7 @@ export default function Home() {
             <Form.Item label="ประเภทน้ำมัน" name="fuelType">
               <Select placeholder="ประเภทน้ำมัน" allowClear>
                 <Option value="ดีเซล">ดีเซล</Option>
+                <Option value="เบนซิน">เบนซิน</Option>
               </Select>
             </Form.Item>
           </Col>
@@ -74,7 +76,7 @@ export default function Home() {
           </Col>
           <Col span={12}>
             <Form.Item label="จำนวนเงินที่เติม" name="total">
-              <Input placeholder="จำนวนเงินที่เติม" disabled />
+              <Input placeholder="จำนวนเงินที่เติม"  />
             </Form.Item>
           </Col>
           <Col span={24}>
@@ -83,6 +85,10 @@ export default function Home() {
                 <Option value="ptt">ปตท.</Option>
                 <Option value="บางจาก">บางจาก</Option>
                 <Option value="เชลล์">เชลล์</Option>
+                <Option value="เเอสโซ่">เอสโซ่</Option>
+                <Option value="คาลเท็กซ์">คาลเท็กซ์</Option>
+                <Option value="พีที">พีที</Option>
+                <Option value="ซัลโก้">ซัลโก้</Option>
               </Select>
             </Form.Item>
           </Col>
@@ -93,7 +99,7 @@ export default function Home() {
             <Button>ยกเลิก</Button>
           </Col>
           <Col>
-            <Button type="primary" disabled>สร้าง</Button>
+            <Button type="primary" >สร้าง</Button>
           </Col>
         </Row>
       </Form>
