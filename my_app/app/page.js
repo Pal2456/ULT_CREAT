@@ -73,7 +73,10 @@ export default function Home() {
         
         <>
           <Row justify="space-between" align="middle" style={{ marginBottom: 15, width: '100%' }}>
-            <Title level={4} style={{ margin: 0 }}>สร้างรายการน้ำมัน</Title>
+            <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#000' }}>
+              สร้างรายการน้ำมัน
+            </div>
+
             <Button type="text" danger>X</Button>
           </Row>
 
