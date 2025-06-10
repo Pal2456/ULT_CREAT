@@ -77,7 +77,18 @@ export default function Home() {
               สร้างรายการน้ำมัน
             </div>
 
-            <Button type="text" danger>X</Button>
+            <Button
+              type="text"
+              style={{
+                color: '#000',        // Black color
+                fontSize: '90px',     // Bigger size
+                fontWeight: 'bold',   // Optional for thicker X
+                lineHeight: 1
+              }}
+            >
+              X
+            </Button>
+
           </Row>
 
           <div
