@@ -85,7 +85,7 @@ export default function Home() {
             <Form.Item 
               label="ประเภทรถ" 
               name="carType"
-              rules={[{ required: true, message: 'กรุณาเลือกประเภทรถ' }]}
+              rules={[{  message: 'กรุณาเลือกประเภทรถ' }]}
             >
               <Select placeholder="ประเภทรถ" allowClear>
                 <Option value="4ล้อ">4 ล้อ</Option>
@@ -98,7 +98,7 @@ export default function Home() {
             <Form.Item 
               label="ทะเบียน" 
               name="plate"
-              rules={[{ required: true, message: 'กรุณาเลือกทะเบียน' }]}
+              rules={[{  message: 'กรุณาเลือกทะเบียน' }]}
             >
               <Select placeholder="ทะเบียน" allowClear>
                 <Option value="1กข1234">1กข1234</Option>
@@ -109,7 +109,7 @@ export default function Home() {
             <Form.Item 
               label="ชื่อคนขับ" 
               name="driver"
-              rules={[{ required: true, message: 'กรุณาเลือกชื่อคนขับ' }]}
+              rules={[{  message: 'กรุณาเลือกชื่อคนขับ' }]}
             >
               <Select placeholder="ชื่อคนขับ" allowClear>
                 <Option value="สมชาย">สมชาย</Option>
@@ -124,7 +124,7 @@ export default function Home() {
             <Form.Item 
               label="วันเวลาที่เติม" 
               name="datetime"
-              rules={[{ required: true, message: 'กรุณาเลือกวันเวลาที่เติม' }]}
+              rules={[{message: 'กรุณาเลือกวันเวลาที่เติม' }]}
             >
               <DatePicker showTime style={{ width: '100%' }} placeholder="วันที่เติม" />
             </Form.Item>
@@ -133,10 +133,7 @@ export default function Home() {
             <Form.Item 
               label="เลขไมล์" 
               name="mileage"
-              rules={[
-                { required: true, message: 'กรุณากรอกเลขไมล์' },
-                { pattern: /^\d+$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
-              ]}
+              
             >
               <Input placeholder="เลขไมล์" />
             </Form.Item>
@@ -145,7 +142,7 @@ export default function Home() {
             <Form.Item 
               label="ประเภทน้ำมัน" 
               name="fuelType"
-              rules={[{ required: true, message: 'กรุณาเลือกประเภทน้ำมัน' }]}
+              rules={[{  message: 'กรุณาเลือกประเภทน้ำมัน' }]}
             >
               <Select placeholder="ประเภทน้ำมัน" allowClear>
                 <Option value="ดีเซล">ดีเซล</Option>
@@ -158,7 +155,7 @@ export default function Home() {
               label="จำนวนลิตร" 
               name="liters"
               rules={[
-                { required: true, message: 'กรุณากรอกจำนวนลิตร' },
+                {  message: 'กรุณากรอกจำนวนลิตร' },
                 { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
               ]}
             >
@@ -170,7 +167,7 @@ export default function Home() {
               label="ราคาน้ำมัน / ลิตร" 
               name="pricePerLiter"
               rules={[
-                { required: true, message: 'กรุณากรอกราคาน้ำมัน / ลิตร' },
+                {  message: 'กรุณากรอกราคาน้ำมัน / ลิตร' },
                 { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
               ]}
             >
@@ -182,7 +179,7 @@ export default function Home() {
               label="จำนวนเงินที่เติม" 
               name="total"
               rules={[
-                { required: true, message: 'กรุณากรอกจำนวนลิตรและราคาน้ำมัน' },
+                {  message: 'กรุณากรอกจำนวนลิตรและราคาน้ำมัน' },
                 { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
               ]}
             >
@@ -201,7 +198,7 @@ export default function Home() {
             <Form.Item 
               label="สถานีบริการน้ำมัน" 
               name="station"
-              rules={[{ required: true, message: 'กรุณาเลือกสถานีบริการน้ำมัน' }]}
+              rules={[{  message: 'กรุณาเลือกสถานีบริการน้ำมัน' }]}
             >
               <Select placeholder="สถานีบริการน้ำมัน" allowClear>
                 <Option value="ptt">ปตท.</Option>
@@ -243,7 +240,7 @@ export default function Home() {
               fontSize: '14px',
               color: isFormValid ? '#52c41a' : '#8c8c8c'
             }}>
-              {isFormValid ? '✓ ข้อมูลครบแล้ว สามารถสร้างได้' : 'กรอกข้อมูลให้ครบทุกช่อง'}
+              
             </div>
           </Col>
         </Row>
