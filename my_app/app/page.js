@@ -37,6 +37,20 @@ export default function Home() {
 
   // เมื่อมีการเปลี่ยนแปลงใน form
   const onValuesChange = (changedValues, allValues) => {
+    // คำนวณจำนวนเงินที่เติม ถ้ามีการเปลี่ยนแปลงจำนวนลิตรหรือราคาต่อลิตร
+    if (changedValues.liters || changedValues.pricePerLiter) {
+      const liters = parseFloat(allValues.liters) || 0;
+      const pricePerLiter = parseFloat(allValues.pricePerLiter) || 0;
+      const total = liters * pricePerLiter;
+      
+      if (liters && pricePerLiter) {
+        form.setFieldsValue({
+          total: total.toFixed(2)
+        });
+        allValues.total = total.toFixed(2);
+      }
+    }
+    
     setFormValues(allValues);
     validateForm(allValues);
   };
@@ -168,11 +182,19 @@ export default function Home() {
               label="จำนวนเงินที่เติม" 
               name="total"
               rules={[
-                { required: true, message: 'กรุณากรอกจำนวนเงินที่เติม' },
+                { required: true, message: 'กรุณากรอกจำนวนลิตรและราคาน้ำมัน' },
                 { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
               ]}
             >
-              <Input placeholder="จำนวนเงินที่เติม" />
+              <Input 
+                placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)" 
+                readOnly
+                style={{ 
+                  backgroundColor: '#f5f5f5',
+                  color: '#1890ff',
+                  fontWeight: 'bold'
+                }}
+              />
             </Form.Item>
           </Col>
           <Col span={24}>
