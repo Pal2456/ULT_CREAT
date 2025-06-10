@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import 'antd/dist/reset.css'; // สำหรับ antd 
-
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -21,6 +21,7 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+        <Link href="/page2">👉 Go to Page 2</Link>
 
         <div className={styles.ctas}>
           <a
