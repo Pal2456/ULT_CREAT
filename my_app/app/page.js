@@ -1,6 +1,7 @@
 'use client';
 
 import { Button, Col, DatePicker, Divider, Form, Input, Row, Select, Typography } from 'antd';
+import { useState, useEffect } from 'react';
 import 'antd/dist/reset.css';
 
 const { Title } = Typography;
@@ -8,6 +9,49 @@ const { Option } = Select;
 
 export default function Home() {
   const [form] = Form.useForm();
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [formValues, setFormValues] = useState({});
+
+  // กำหนดช่องที่จำเป็นต้องกรอก
+  const requiredFields = [
+    'carType',
+    'plate', 
+    'driver',
+    'datetime',
+    'mileage',
+    'fuelType',
+    'liters',
+    'pricePerLiter',
+    'total',
+    'station'
+  ];
+
+  // ตรวจสอบความถูกต้องของฟอร์ม
+  const validateForm = (values) => {
+    const isValid = requiredFields.every(field => {
+      const value = values[field];
+      return value !== undefined && value !== null && value !== '';
+    });
+    setIsFormValid(isValid);
+  };
+
+  // เมื่อมีการเปลี่ยนแปลงใน form
+  const onValuesChange = (changedValues, allValues) => {
+    setFormValues(allValues);
+    validateForm(allValues);
+  };
+
+  // เมื่อกดปุ่มสร้าง
+  const handleSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+      console.log('Form values:', values);
+      // ส่งข้อมูลไปยัง API หรือประมวลผลต่อไป
+      alert('สร้างรายการน้ำมันสำเร็จ!');
+    } catch (error) {
+      console.error('Validation failed:', error);
+    }
+  };
 
   return (
     <div style={{ maxWidth: 800, margin: '40px auto', background: '#fff', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
@@ -16,11 +60,19 @@ export default function Home() {
         <Button type="text" danger>X</Button>
       </Row>
 
-      <Form form={form} layout="vertical">
+      <Form 
+        form={form} 
+        layout="vertical"
+        onValuesChange={onValuesChange}
+      >
         <Divider orientation="left" orientationMargin="0">ข้อมูลรถและคนขับ</Divider>
         <Row gutter={16}>
           <Col span={12}>
-            <Form.Item label="ประเภทรถ" name="carType">
+            <Form.Item 
+              label="ประเภทรถ" 
+              name="carType"
+              rules={[{ required: true, message: 'กรุณาเลือกประเภทรถ' }]}
+            >
               <Select placeholder="ประเภทรถ" allowClear>
                 <Option value="4ล้อ">4 ล้อ</Option>
                 <Option value="6ล้อ">6 ล้อ</Option>
@@ -29,14 +81,22 @@ export default function Home() {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="ทะเบียน" name="plate">
+            <Form.Item 
+              label="ทะเบียน" 
+              name="plate"
+              rules={[{ required: true, message: 'กรุณาเลือกทะเบียน' }]}
+            >
               <Select placeholder="ทะเบียน" allowClear>
                 <Option value="1กข1234">1กข1234</Option>
               </Select>
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="ชื่อคนขับ" name="driver">
+            <Form.Item 
+              label="ชื่อคนขับ" 
+              name="driver"
+              rules={[{ required: true, message: 'กรุณาเลือกชื่อคนขับ' }]}
+            >
               <Select placeholder="ชื่อคนขับ" allowClear>
                 <Option value="สมชาย">สมชาย</Option>
               </Select>
@@ -47,17 +107,32 @@ export default function Home() {
         <Divider orientation="left" orientationMargin="0">ข้อมูลการเติมน้ำมัน</Divider>
         <Row gutter={16}>
           <Col span={12}>
-            <Form.Item label="วันเวลาที่เติม" name="datetime">
+            <Form.Item 
+              label="วันเวลาที่เติม" 
+              name="datetime"
+              rules={[{ required: true, message: 'กรุณาเลือกวันเวลาที่เติม' }]}
+            >
               <DatePicker showTime style={{ width: '100%' }} placeholder="วันที่เติม" />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="เลขไมล์" name="mileage">
+            <Form.Item 
+              label="เลขไมล์" 
+              name="mileage"
+              rules={[
+                { required: true, message: 'กรุณากรอกเลขไมล์' },
+                { pattern: /^\d+$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
+              ]}
+            >
               <Input placeholder="เลขไมล์" />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="ประเภทน้ำมัน" name="fuelType">
+            <Form.Item 
+              label="ประเภทน้ำมัน" 
+              name="fuelType"
+              rules={[{ required: true, message: 'กรุณาเลือกประเภทน้ำมัน' }]}
+            >
               <Select placeholder="ประเภทน้ำมัน" allowClear>
                 <Option value="ดีเซล">ดีเซล</Option>
                 <Option value="เบนซิน">เบนซิน</Option>
@@ -65,22 +140,47 @@ export default function Home() {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="จำนวนลิตร" name="liters">
+            <Form.Item 
+              label="จำนวนลิตร" 
+              name="liters"
+              rules={[
+                { required: true, message: 'กรุณากรอกจำนวนลิตร' },
+                { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
+              ]}
+            >
               <Input placeholder="จำนวนลิตร" />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="ราคาน้ำมัน / ลิตร" name="pricePerLiter">
+            <Form.Item 
+              label="ราคาน้ำมัน / ลิตร" 
+              name="pricePerLiter"
+              rules={[
+                { required: true, message: 'กรุณากรอกราคาน้ำมัน / ลิตร' },
+                { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
+              ]}
+            >
               <Input placeholder="ราคาน้ำมัน / ลิตร" />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="จำนวนเงินที่เติม" name="total">
-              <Input placeholder="จำนวนเงินที่เติม"  />
+            <Form.Item 
+              label="จำนวนเงินที่เติม" 
+              name="total"
+              rules={[
+                { required: true, message: 'กรุณากรอกจำนวนเงินที่เติม' },
+                { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
+              ]}
+            >
+              <Input placeholder="จำนวนเงินที่เติม" />
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="สถานีบริการน้ำมัน" name="station">
+            <Form.Item 
+              label="สถานีบริการน้ำมัน" 
+              name="station"
+              rules={[{ required: true, message: 'กรุณาเลือกสถานีบริการน้ำมัน' }]}
+            >
               <Select placeholder="สถานีบริการน้ำมัน" allowClear>
                 <Option value="ptt">ปตท.</Option>
                 <Option value="บางจาก">บางจาก</Option>
@@ -99,7 +199,30 @@ export default function Home() {
             <Button>ยกเลิก</Button>
           </Col>
           <Col>
-            <Button type="primary" >สร้าง</Button>
+            <Button 
+              type="primary" 
+              disabled={!isFormValid}
+              onClick={handleSubmit}
+              style={{
+                opacity: isFormValid ? 1 : 0.5,
+                cursor: isFormValid ? 'pointer' : 'not-allowed'
+              }}
+            >
+              สร้าง
+            </Button>
+          </Col>
+        </Row>
+
+        {/* แสดงสถานะของฟอร์ม */}
+        <Row justify="center" style={{ marginTop: 16 }}>
+          <Col>
+            <div style={{ 
+              textAlign: 'center', 
+              fontSize: '14px',
+              color: isFormValid ? '#52c41a' : '#8c8c8c'
+            }}>
+              {isFormValid ? '✓ ข้อมูลครบแล้ว สามารถสร้างได้' : 'กรอกข้อมูลให้ครบทุกช่อง'}
+            </div>
           </Col>
         </Row>
       </Form>
