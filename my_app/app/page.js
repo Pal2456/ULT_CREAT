@@ -1,100 +1,102 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import 'antd/dist/reset.css'; // สำหรับ antd 
-import Link from "next/link";
+'use client';
+
+import { Button, Col, DatePicker, Divider, Form, Input, Row, Select, Typography } from 'antd';
+import 'antd/dist/reset.css';
+
+const { Title } = Typography;
+const { Option } = Select;
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-        <Link href="/page2">👉 Go to Page 2</Link>
+  const [form] = Form.useForm();
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  return (
+    <div style={{ maxWidth: 800, margin: '40px auto', background: '#fff', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+      <Row justify="space-between" align="middle" style={{ marginBottom: 24 }}>
+        <Title level={4} style={{ margin: 0 }}>สร้างรายการน้ำมัน</Title>
+        <Button type="text" danger>X</Button>
+      </Row>
+
+      <Form form={form} layout="vertical">
+        <Divider orientation="left" orientationMargin="0">ข้อมูลรถและคนขับ</Divider>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item label="ประเภทรถ" name="carType">
+              <Select placeholder="ประเภทรถ" allowClear>
+                <Option value="4ล้อ">4 ล้อ</Option>
+                <Option value="6ล้อ">6 ล้อ</Option>
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="ทะเบียน" name="plate">
+              <Select placeholder="ทะเบียน" allowClear>
+                <Option value="1กข1234">1กข1234</Option>
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="ชื่อคนขับ" name="driver">
+              <Select placeholder="ชื่อคนขับ" allowClear>
+                <Option value="สมชาย">สมชาย</Option>
+              </Select>
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Divider orientation="left" orientationMargin="0">ข้อมูลการเติมน้ำมัน</Divider>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item label="วันเวลาที่เติม" name="datetime">
+              <DatePicker showTime style={{ width: '100%' }} placeholder="วันที่เติม" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="เลขไมล์" name="mileage">
+              <Input placeholder="เลขไมล์" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="ประเภทน้ำมัน" name="fuelType">
+              <Select placeholder="ประเภทน้ำมัน" allowClear>
+                <Option value="ดีเซล">ดีเซล</Option>
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="จำนวนลิตร" name="liters">
+              <Input placeholder="จำนวนลิตร" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="ราคาน้ำมัน / ลิตร" name="pricePerLiter">
+              <Input placeholder="ราคาน้ำมัน / ลิตร" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="จำนวนเงินที่เติม" name="total">
+              <Input placeholder="จำนวนเงินที่เติม" disabled />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="สถานีบริการน้ำมัน" name="station">
+              <Select placeholder="สถานีบริการน้ำมัน" allowClear>
+                <Option value="ptt">ปตท.</Option>
+                <Option value="บางจาก">บางจาก</Option>
+                <Option value="เชลล์">เชลล์</Option>
+              </Select>
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Row justify="center" gutter={16} style={{ marginTop: 32 }}>
+          <Col>
+            <Button>ยกเลิก</Button>
+          </Col>
+          <Col>
+            <Button type="primary" disabled>สร้าง</Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
   );
 }
-
-
