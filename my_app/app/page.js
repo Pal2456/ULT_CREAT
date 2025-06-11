@@ -126,7 +126,9 @@ export default function Home() {
             </Col>
             <Col span={12}>
               <Form.Item label={<span style={{ fontWeight: 'bold' }}>เลขไมล์</span>} name="mileage">
-                <Input placeholder="เลขไมล์" />
+                <Input placeholder="เลขไมล์" style={{ width: '100%', height: '32px' }} />
+
+
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -139,17 +141,30 @@ export default function Home() {
             </Col>
             <Col span={12}>
               <Form.Item label={<span style={{ fontWeight: 'bold' }}>จำนวนลิตร</span>} name="liters">
-                <Input placeholder="จำนวนลิตร" />
+                
+                <Input placeholder="จำนวนลิตร" style={{ width: '100%', height: '32px' }} />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label={<span style={{ fontWeight: 'bold' }}>ราคาน้ำมัน / ลิตร</span>} name="pricePerLiter">
-                <Input placeholder="ราคาน้ำมัน / ลิตร" />
+                
+                <Input placeholder="ราคาน้ำมัน / ลิตร" style={{ width: '100%', height: '32px' }} />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label={<span style={{ fontWeight: 'bold' }}>จำนวนเงินที่เติม</span>} name="total">
-                <Input readOnly placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)" style={{ backgroundColor: '#f5f5f5', color: '#000', fontWeight: 'bold' }} />
+                <Input
+                  readOnly
+                  placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)"
+                  style={{
+                    backgroundColor: '#f5f5f5',
+                    color: '#000',
+                    fontWeight: 'bold',
+                    height: '32px',
+                    width: '100%'
+                  }}
+                />
+
               </Form.Item>
             </Col>
             <Col span={24}>
