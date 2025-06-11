@@ -192,7 +192,7 @@ export default function Home() {
           </Row>
 
           <Modal
-            title={<span style={{ fontSize: '18px', fontWeight: 600 }}>สร้างรายการสำเร็จ</span>}
+            title={<span style={{ fontSize: '18px', fontWeight: 600 }}>รายละเอียด</span>}
             open={isModalVisible}
             onCancel={() => setIsModalVisible(false)}
             footer={[
@@ -200,19 +200,77 @@ export default function Home() {
               <Link key="info" href="/info"><Button type="primary">ไปที่หน้า Info</Button></Link>
             ]}
           >
-            <div>
-              <p><strong>ประเภทรถ:</strong> {formValues.carType}</p>
-              <p><strong>ทะเบียน:</strong> {formValues.plate}</p>
-              <p><strong>ชื่อคนขับ:</strong> {formValues.driver}</p>
-              <p><strong>วันเวลาที่เติม:</strong> {formValues.datetime?.format?.("YYYY-MM-DD HH:mm:ss") || String(formValues.datetime)}</p>
-              <p><strong>เลขไมล์:</strong> {formValues.mileage}</p>
-              <p><strong>ประเภทน้ำมัน:</strong> {formValues.fuelType}</p>
-              <p><strong>จำนวนลิตร:</strong> {formValues.liters}</p>
-              <p><strong>ราคาน้ำมัน / ลิตร:</strong> {formValues.pricePerLiter}</p>
-              <p><strong>จำนวนเงินที่เติม:</strong> {formValues.total}</p>
-              <p><strong>สถานีบริการน้ำมัน:</strong> {formValues.station}</p>
+            {/* Section: ข้อมูลรถและคนขับ */}
+            <div style={{
+              backgroundColor: '#EBDCFB',
+              padding: '8px 16px',
+              borderRadius: '12px',
+              marginBottom: '16px',
+              fontWeight: '600',
+              color: '#8000b3'
+            }}>
+              ข้อมูลรถและคนขับ
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', rowGap: 6, marginBottom: 24 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>ประเภทรถ</span>
+                <span>{formValues.carType}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>ทะเบียน</span>
+                <span>{formValues.plate}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>ชื่อคนขับ</span>
+                <span>{formValues.driver}</span>
+              </div>
+            </div>
+
+            {/* Section: ข้อมูลการเติมน้ำมัน */}
+            <div style={{
+              backgroundColor: '#EBDCFB',
+              padding: '8px 16px',
+              borderRadius: '12px',
+              marginBottom: '16px',
+              fontWeight: '600',
+              color: '#8000b3'
+            }}>
+              ข้อมูลการเติมน้ำมัน
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', rowGap: 6 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>วันเวลาที่เติม</span>
+                <span>{formValues.datetime?.format?.("DD/MM/YY HH:mm") || String(formValues.datetime)}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>เลขไมล์</span>
+                <span>{formValues.mileage} KM</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>ประเภทน้ำมัน</span>
+                <span>{formValues.fuelType}</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>จำนวนลิตร</span>
+                <span>{formValues.liters} liter</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>ราคาน้ำมัน / ลิตร</span>
+                <span>{Number(formValues.pricePerLiter).toFixed(2)} บาท</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>จำนวนเงินที่เติม</span>
+                <span>{Number(formValues.total).toLocaleString()} บาท</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>สถานีบริการน้ำมัน</span>
+                <span>{formValues.station}</span>
+              </div>
             </div>
           </Modal>
+
         </Form>
       </div>
     </ConfigProvider>
