@@ -100,7 +100,20 @@ export default function Home() {
 
   return (
     <ConfigProvider theme={customTheme}>
-      <div style={{ maxWidth: 800, margin: '40px auto', background: '#fff', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+      <div
+        style={{
+          width: '600px',               // ความกว้างตามภาพ
+          height: '852px',              // ความสูงตามภาพ
+          margin: '40px auto',
+          background: '#fff',
+          padding: 24,
+          borderRadius: 12,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          overflowY: 'auto',           // ✅ เลื่อน scroll ได้หากเกินความสูง
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
         <Row justify="space-between" align="middle" style={{ marginBottom: 0 }}>
           
           <>
@@ -136,170 +149,120 @@ export default function Home() {
           
         </Row>
 
-        <Form 
-          form={form} 
-          layout="vertical"
-          onValuesChange={onValuesChange}
-        >
-          <div
-            style={{
-              backgroundColor: '#7B41B31A', // soft light purple
-              color: '#8000b3',           // dark purple text
-              padding: '12px 20px',
-              borderRadius: '999px',
-              fontWeight: '500',
-              marginBottom: '24px',
-              fontSize: '14px',
-              width: '100%',
-            }}
-          >
-            ข้อมูลรถและคนขับ
-          </div>
+                <Form form={form} layout="vertical" onValuesChange={onValuesChange}>
+            <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '999px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลรถและคนขับ</div>
 
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item 
-                label="ประเภทรถ" 
-                name="carType"
-                rules={[{  message: 'กรุณาเลือกประเภทรถ' }]}
-              >
-                <Select placeholder="ประเภทรถ" allowClear>
-                  <Option value="4ล้อ">4 ล้อ</Option>
-                  <Option value="6ล้อ">6 ล้อ</Option>
-                  <Option value="10ล้อ">10 ล้อ</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item 
-                label="ทะเบียน" 
-                name="plate"
-                rules={[{  message: 'กรุณาเลือกทะเบียน' }]}
-              >
-                <Select placeholder="ทะเบียน" allowClear>
-                  <Option value="1กข1234">1กข1234</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item 
-                label="ชื่อคนขับ" 
-                name="driver"
-                rules={[{  message: 'กรุณาเลือกชื่อคนขับ' }]}
-              >
-                <Select placeholder="ชื่อคนขับ" allowClear>
-                  <Option value="สมชาย">สมชาย</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-          </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item label="ประเภทรถ" name="carType" rules={[{ message: 'กรุณาเลือกประเภทรถ' }]}>
+                  <Select placeholder="ประเภทรถ" allowClear style={{ backgroundColor: '#fff' }}>
+                    <Option value="4ล้อ">4 ล้อ</Option>
+                    <Option value="6ล้อ">6 ล้อ</Option>
+                    <Option value="10ล้อ">10 ล้อ</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label="ทะเบียน" name="plate" rules={[{ message: 'กรุณาเลือกทะเบียน' }]}>
+                  <Select placeholder="ทะเบียน" allowClear style={{ backgroundColor: '#fff' }}>
+                    <Option value="1กข1234">1กข1234</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item label="ชื่อคนขับ" name="driver" rules={[{ message: 'กรุณาเลือกชื่อคนขับ' }]}>
+                  <Select placeholder="ชื่อคนขับ" allowClear style={{ backgroundColor: '#fff' }}>
+                    <Option value="สมชาย">สมชาย</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
 
-          <div
-            style={{
-              backgroundColor: '#7B41B31A', // soft light purple
-              color: '#8000b3',           // dark purple text
-              padding: '12px 20px',
-              borderRadius: '999px',
-              fontWeight: '500',
-              marginBottom: '24px',
-              fontSize: '14px',
-              width: '100%',
-            }}
-          >
-            ข้อมูลการเติมน้ำมัน
-          </div>
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item 
-                label="วันเวลาที่เติม" 
-                name="datetime"
-                
-              >
-                <DatePicker showTime style={{ width: '100%' }} placeholder="วันที่เติม" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item 
-                label="เลขไมล์" 
-                name="mileage"
-                rules={[
-                  {  message: 'กรุณากรอกเลขไมล์' },
-                  { pattern: /^\d+$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
-                ]}
-              >
-                <Input placeholder="เลขไมล์" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item 
-                label="ประเภทน้ำมัน" 
-                name="fuelType"
-                rules={[{  message: 'กรุณาเลือกประเภทน้ำมัน' }]}
-              >
-                <Select placeholder="ประเภทน้ำมัน" allowClear>
-                  <Option value="ดีเซล">ดีเซล</Option>
-                  <Option value="เบนซิน">เบนซิน</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item 
-                label="จำนวนลิตร" 
-                name="liters"
-                rules={[
-                  {  message: 'กรุณากรอกจำนวนลิตร' },
-                  { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
-                ]}
-              >
-                <Input placeholder="จำนวนลิตร" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item 
-                label="ราคาน้ำมัน / ลิตร" 
-                name="pricePerLiter"
-                rules={[
-                  {  message: 'กรุณากรอกราคาน้ำมัน / ลิตร' },
-                  { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
-                ]}
-              >
-                <Input placeholder="ราคาน้ำมัน / ลิตร" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item 
-                label="จำนวนเงินที่เติม" 
-                name="total"
-                rules={[
-                  {  message: 'กรุณากรอกจำนวนลิตรและราคาน้ำมัน' },
-                  { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
-                ]}
-              >
-                <Input 
-                  placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)" 
-                  readOnly
-                  style={{ 
-                    backgroundColor: '#f5f5f5',
-                    color: '#000000',
-                    fontWeight: 'bold'
-                  }}
-                />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item 
-                label="สถานีบริการน้ำมัน" 
-                name="station"
-                rules={[{  message: 'กรุณาเลือกสถานีบริการน้ำมัน' }]}
-              >
-                <Select placeholder="สถานีบริการน้ำมัน" allowClear>
-                  <Option value="ptt">ปตท.</Option>
-                  <Option value="บางจาก">บางจาก</Option>
-                  <Option value="เชลล์">เชลล์</Option>
-                  <Option value="เเอสโซ่">เอสโซ่</Option>
-                  <Option value="คาลเท็กซ์">คาลเท็กซ์</Option>
-                  <Option value="พีที">พีที</Option>
-                  <Option value="ซัลโก้">ซัลโก้</Option>
+            <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '999px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลการเติมน้ำมัน</div>
+
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item label="วันเวลาที่เติม" name="datetime">
+                  <DatePicker showTime style={{ width: '100%', backgroundColor: '#fff' }} placeholder="วันที่เติม" />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label="เลขไมล์"
+                  name="mileage"
+                  rules={[
+                    { message: 'กรุณากรอกเลขไมล์' },
+                    { pattern: /^\d+$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
+                  ]}
+                >
+                  <Input placeholder="เลขไมล์" autoComplete="off" style={{ backgroundColor: '#fff' }} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label="ประเภทน้ำมัน" name="fuelType" rules={[{ message: 'กรุณาเลือกประเภทน้ำมัน' }]}>
+                  <Select placeholder="ประเภทน้ำมัน" allowClear style={{ backgroundColor: '#fff' }}>
+                    <Option value="ดีเซล">ดีเซล</Option>
+                    <Option value="เบนซิน">เบนซิน</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label="จำนวนลิตร"
+                  name="liters"
+                  rules={[
+                    { message: 'กรุณากรอกจำนวนลิตร' },
+                    { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
+                  ]}
+                >
+                  <Input placeholder="จำนวนลิตร" autoComplete="off" style={{ backgroundColor: '#fff' }} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label="ราคาน้ำมัน / ลิตร"
+                  name="pricePerLiter"
+                  rules={[
+                    { message: 'กรุณากรอกราคาน้ำมัน / ลิตร' },
+                    { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
+                  ]}
+                >
+                  <Input placeholder="ราคาน้ำมัน / ลิตร" autoComplete="off" style={{ backgroundColor: '#fff' }} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item
+                  label="จำนวนเงินที่เติม"
+                  name="total"
+                  rules={[
+                    { message: 'กรุณากรอกจำนวนลิตรและราคาน้ำมัน' },
+                    { pattern: /^\d+(\.\d+)?$/, message: 'กรุณากรอกตัวเลขเท่านั้น' }
+                  ]}
+                >
+                  <Input
+                    placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)"
+                    readOnly
+                    style={{
+                      backgroundColor: '#f5f5f5',
+                      color: '#000000',
+                      fontWeight: 'bold'
+                    }}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item label="สถานีบริการน้ำมัน" name="station" rules={[{ message: 'กรุณาเลือกสถานีบริการน้ำมัน' }]}>
+                  <Select placeholder="สถานีบริการน้ำมัน" allowClear style={{ backgroundColor: '#fff' }}>
+                    <Option value="ptt">ปตท.</Option>
+                    <Option value="บางจาก">บางจาก</Option>
+                    <Option value="เชลล์">เชลล์</Option>
+                    <Option value="เเอสโซ่">เอสโซ่</Option>
+                    <Option value="คาลเท็กซ์">คาลเท็กซ์</Option>
+                    <Option value="พีที">พีที</Option>
+                    <Option value="ซัลโก้">ซัลโก้</Option>
+  
+
+
                 </Select>
               </Form.Item>
             </Col>
