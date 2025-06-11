@@ -1,7 +1,28 @@
+import { Button, Row, Col } from 'antd';
+
 export default function FuelTable({ data }) {
+    // ฟังก์ชันสำหรับปุ่มคลิก
+    const handleCreateNew = () => {
+        console.log("Create New Item button clicked from FuelTable!");
+    };
+
     return (
-        <div className="bg-white p-4 rounded-lg shadow-md">
-            <h2 className="text-lg font-bold mb-4 text-black">รายการน้ำมันทั้งหมด</h2>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+            <Row justify="space-between" align="middle" className="mb-4">
+                <Col>
+                    <h2 className="text-lg font-bold text-black">รายการน้ำมันทั้งหมด</h2>
+                </Col>
+                <Col>
+                    <Button
+                        type="primary"
+                        onClick={handleCreateNew}
+                        style={{ backgroundColor: '#7B41B3' }}
+                    >
+                        + สร้างรายการน้ำมันใหม่
+                    </Button>
+                </Col>
+            </Row>
+
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
