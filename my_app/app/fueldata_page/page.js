@@ -6,6 +6,7 @@ import FuelTable from './components/FuelTable';
 import PageBreak from './components/PageBreak';
 import { fueldata } from './data/fueldata';
 
+//usestate to show the new information automatically
 export default function Home() {
     const [searchTerm, setSearchTerm] = useState('');
     const [fuelType, setFuelType] = useState('');
@@ -14,6 +15,7 @@ export default function Home() {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [dateKey, setDateKey] = useState(Date.now());
 
+    //เป็นพ่อ, create here so it can modify and sent to child components as prop
     const handleClearFilters = () => {
         setSearchTerm('');
         setFuelType('');
@@ -24,10 +26,11 @@ export default function Home() {
 
     const handleItemsPerPageChange = (size) => {
         setItemsPerPage(size);
-        setCurrentPage(1);
+        setCurrentPage(1); //always turn back to page 1
     };
 
     const filteredData = fueldata.filter(item => {
+        //date convert logic
         const datePart = item.date.split(' ')[0];
         const [day, month, shortYear] = datePart.split('/');
 
@@ -40,12 +43,15 @@ export default function Home() {
         const startDate = startDateString ? new Date(startDateString) : null;
         const endDate = endDateString ? new Date(endDateString) : null;
 
+        //date range check
         let isDateInRange = true;
         if (startDate && endDate) {
             startDate.setHours(0, 0, 0, 0);
             endDate.setHours(23, 59, 59, 999);
             isDateInRange = itemDate >= startDate && itemDate <= endDate;
         }
+
+        //จะโชว์ที่ผ่าน
         return (
             (searchTerm === '' || item.licensePlate.toLowerCase().includes(searchTerm.toLowerCase())) &&
             (fuelType === '' || item.fuelType === fuelType) &&
@@ -53,11 +59,13 @@ export default function Home() {
         );
     });
 
+    //เพื่อแบ่งส่วนและจัดเรียงหลังจากผ่าน
     const paginatedData = filteredData.slice(
         (currentPage - 1) * itemsPerPage,
         currentPage * itemsPerPage
     );
 
+    //ส่งฟังชันไปที่ส่วนต่างๆ(another components) as prop
     return (
         <main className="min-h-screen bg-gray-100 p-3">
             <h1 className="text-2xl font-bold mb-6 text-black">น้ำมัน</h1>

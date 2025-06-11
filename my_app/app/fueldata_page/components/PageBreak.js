@@ -1,11 +1,12 @@
 'use client';
 
 export default function PageBreak({ totalItems, itemsPerPage, currentPage, onPageChange, onItemsPerPageChange }) {
+    //คำนวณจำนวนต่อหนา้
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
     const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
-            onPageChange(page);
+            onPageChange(page); //from page.js
         }
     };
 
@@ -66,6 +67,7 @@ export default function PageBreak({ totalItems, itemsPerPage, currentPage, onPag
         );
     };
 
+    
     return (
         <div className="mt-6 mr-auto flex items-center space-x-2">
             <p className="text-sm text-gray-700">
@@ -90,7 +92,7 @@ export default function PageBreak({ totalItems, itemsPerPage, currentPage, onPag
             </div>
             <div>
                  <select
-                    value={itemsPerPage}
+                    value={itemsPerPage} //from page.js
                     onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
                     className="pl-2 pr-1 py-2 text-base text-sm bg-white text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
                 >

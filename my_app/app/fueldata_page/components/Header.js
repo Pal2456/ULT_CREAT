@@ -7,7 +7,7 @@ const { RangePicker } = DatePicker;
 const { Option } = Select;
 
 export default function Header({ onSearch, onFuelTypeChange, onDateChange, onClear, searchTerm, fuelType, dataKey }) {
-    const handleDateChange = (_dates, dateStrings ) => {
+    const handleDateChange = ( dateStrings ) => {
         onDateChange(dateStrings);
     };
 
@@ -18,10 +18,10 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
                     <label className="block text-sm font-medium text-gray-700 mb-1">ค้นหา</label>
                     <Input
                         placeholder="ทะเบียน"
-                        prefix={<SearchOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
-                        value={searchTerm}
-                        onChange={(e) => onSearch(e.target.value)}
-                        allowClear
+                        prefix={<SearchOutlined style={{ color: 'rgba(0,0,0,.25)' }} />} //icon
+                        value={searchTerm} //from page.js
+                        onChange={(e) => onSearch(e.target.value)} //from page.js
+                        allowClear //ปุ่มลบ
                     />
                 </Col>
 
@@ -53,7 +53,7 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
                     <label className="mr-auto flex items-center"></label>
                     <Button
                         icon={<ReloadOutlined />}
-                        onClick={onClear}
+                        onClick={onClear} //from page.js
                         style={{ width: '10%' }}
                     >
                     </Button>

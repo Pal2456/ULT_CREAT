@@ -1,6 +1,6 @@
 import { Button, Row, Col } from 'antd';
 
-export default function FuelTable({ data, pagination }) {
+export default function FuelTable({ data, pagination }) { //เอา components จาก PageBreak มาใส
     // ไว้ใส่ฟังก์ชันสำหรับปุ่มคลิก
     const handleCreateNew = () => {
         console.log("Create New Item button clicked from FuelTable!");
@@ -39,7 +39,7 @@ export default function FuelTable({ data, pagination }) {
                         </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                        {data.map((item) => (
+                        {data.map((item) => ( //to loop through the 'data' array and สร้างแถวสำหรับแต่ละรายการ(tr)
                             <tr key={item.id}>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.date}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.licensePlate}</td>
@@ -55,8 +55,9 @@ export default function FuelTable({ data, pagination }) {
                     </tbody>
                 </table>
             </div>
+            {/* //to render the 'pagination' components ที่ส่งผ่าน prop จาก page.js */}
             <div className="mt-4 border-t pt-4">
-                {pagination}
+                {pagination} 
             </div>
         </div>
     );
