@@ -53,13 +53,16 @@ export default function Home() {
                 fuelType={fuelType}
                 date={date}
             />
-            <FuelTable data={paginatedData} />
-            <PageBreak
-                totalItems={filteredData.length}
-                itemsPerPage={itemsPerPage}
-                currentPage={currentPage}
-                onPageChange={setCurrentPage}
-                onItemsPerPageChange={handleItemsPerPageChange}
+            <FuelTable data={paginatedData}
+                pagination={
+                    <PageBreak
+                        totalItems={filteredData.length}
+                        itemsPerPage={itemsPerPage}
+                        currentPage={currentPage}
+                        onPageChange={setCurrentPage}
+                        onItemsPerPageChange={handleItemsPerPageChange}
+                    />
+                }
             />
         </main>
     );

@@ -1,7 +1,7 @@
 import { Button, Row, Col } from 'antd';
 
-export default function FuelTable({ data }) {
-    // ฟังก์ชันสำหรับปุ่มคลิก
+export default function FuelTable({ data, pagination }) {
+    // ไว้ใส่ฟังก์ชันสำหรับปุ่มคลิก
     const handleCreateNew = () => {
         console.log("Create New Item button clicked from FuelTable!");
     };
@@ -54,6 +54,9 @@ export default function FuelTable({ data }) {
                         ))}
                     </tbody>
                 </table>
+            </div>
+            <div className="mt-4 border-t pt-4">
+                {pagination}
             </div>
         </div>
     );

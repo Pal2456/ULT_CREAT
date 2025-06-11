@@ -3,21 +3,18 @@
 import { Input, Select, DatePicker, Button, Row, Col } from 'antd';
 import { SearchOutlined, ReloadOutlined } from '@ant-design/icons';
 
+const { RangePicker } = DatePicker;
 const { Option } = Select;
 
 export default function Header({ onSearch, onFuelTypeChange, onDateChange, onClear, searchTerm, fuelType, date }) {
-    const handleCreateNew = () => {
-        console.log("Create New Item button clicked!");
-    };
-
-    const handleDateChange = (date, dateString) => {
-        onDateChange(dateString);
+    const handleDateChange = ( {date}, {dateStrings} ) => {
+        onDateChange(dateStrings);
     };
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div className="bg-white p-5 rounded-lg shadow-md mb-5">
             <Row gutter={[16, 16]} align="bottom">
-                <Col xs={24} sm={12} md={6}>
+                <Col xs={24} sm={12} md={5}>
                     <label className="block text-sm font-medium text-gray-700 mb-1">ค้นหา</label>
                     <Input
                         placeholder="ทะเบียน"
@@ -28,7 +25,7 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
                     />
                 </Col>
 
-                <Col xs={24} sm={12} md={6}>
+                <Col xs={24} sm={12} md={4}>
                     <label className="block text-sm font-medium text-gray-700 mb-1">ประเภทน้ำมัน</label>
                     <Select
                         placeholder="ทั้งหมด"
@@ -42,16 +39,17 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
                     </Select>
                 </Col>
 
-                <Col xs={24} sm={12} md={6}>
+                <Col xs={24} sm={12} md={4}>
                     <label className="block text-sm font-medium text-gray-700 mb-1">วันที่</label>
-                    <DatePicker
-                        placeholder="วันที่เริ่มต้น - วันที่สิ้นสุด"
+                    <RangePicker
+                        placeholder={['วันที่เริ่มต้น', 'วันที่สิ้นสุด']}
                         onChange={handleDateChange}
                         style={{ width: '100%' }}
                     />
                 </Col>
 
                 <Col xs={24} sm={12} md={6}>
+                    <label className="mr-auto flex items-center"></label>
                     <Button
                         icon={<ReloadOutlined />}
                         onClick={onClear}
