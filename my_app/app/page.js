@@ -67,7 +67,20 @@ export default function Home() {
 
   return (
     <ConfigProvider theme={customTheme}>
-      <div style={{ maxWidth: 800, margin: '40px auto', background: '#fff', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+      <div
+        style={{
+          width: '600px',               // ความกว้างตามภาพ
+          height: '852px',              // ความสูงตามภาพ
+          margin: '40px auto',
+          background: '#fff',
+          padding: 24,
+          borderRadius: 12,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          overflowY: 'auto',           // ✅ เลื่อน scroll ได้หากเกินความสูง
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
         <Row justify="space-between" align="middle" style={{ marginBottom: 15, width: '100%' }}>
           <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#000' }}>สร้างรายการน้ำมัน</div>
           <Button type="text" style={{ color: '#000', fontSize: '90px', fontWeight: 'bold', lineHeight: 1 }}>X</Button>
@@ -75,7 +88,7 @@ export default function Home() {
         <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginBottom: 20 }} />
 
         <Form form={form} layout="vertical" onValuesChange={onValuesChange}>
-          <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '10px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลรถและคนขับ</div>
+          <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '999px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลรถและคนขับ</div>
 
           <Row gutter={16}>
             <Col span={12}>
@@ -103,7 +116,7 @@ export default function Home() {
             </Col>
           </Row>
 
-          <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '10px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลการเติมน้ำมัน</div>
+          <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '999px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลการเติมน้ำมัน</div>
 
           <Row gutter={16}>
             <Col span={12}>
