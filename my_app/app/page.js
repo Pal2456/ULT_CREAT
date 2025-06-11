@@ -80,6 +80,9 @@ export default function Home() {
           display: 'flex',
           flexDirection: 'column'
         }}
+
+
+
       >
         <Row justify="space-between" align="middle" style={{ width: '100%' }}>
           <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#000' }}>
@@ -89,15 +92,22 @@ export default function Home() {
             type="text"
             style={{
               color: '#000',
-              fontSize: '24px',
+              fontSize: '70px',           // Increased font size
               fontWeight: 'bold',
               lineHeight: 1,
               padding: 0,
+              width: '48px',              // Optional: fixed size for the button
+              height: '48px',
+              textAlign: 'center'
             }}
           >
             X
           </Button>
         </Row>
+
+
+
+
 
         {/* Force-visible separator line */}
         <div
