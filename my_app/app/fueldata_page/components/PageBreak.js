@@ -92,7 +92,7 @@ export default function PageBreak({ totalItems, itemsPerPage, currentPage, onPag
                  <select
                     value={itemsPerPage}
                     onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-                    className="pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md text-gray-900"
+                    className="pl-3 pr-10 py-2 text-base text-black border-gray-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm rounded-md bg-white"
                 >
                     <option value={10}>10/Page</option>
                     <option value={20}>20/Page</option>
