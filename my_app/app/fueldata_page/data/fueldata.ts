@@ -1,0 +1,39 @@
+export interface FuelDataTable {
+  id: number;
+  date: string;
+  licensePlate: string;
+  vehicleType: string;
+  driverName: string;
+  fuelType: 'ดีเซล' | 'เบนซิน';
+  liters: number;
+  pricePerLiter: number;
+  totalCost: number;
+  status: 'ปตท.' | 'บางจาก' | 'คาลเท็กซ์';
+}
+
+export const fueldata: FuelDataTable[] = [
+    { id: 1, date: '25/02/67 15:00', licensePlate: 'อก1212', vehicleType: '4 ล้อตู้ทึบ', driverName: 'พรสิทธิ์ ชำนาญการ', fuelType: 'ดีเซล', liters: 20, pricePerLiter: 32, totalCost: 640, status: 'ปตท.' },
+    { id: 2, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '6 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 40, pricePerLiter: 28, totalCost: 1120, status: 'บางจาก' },
+    { id: 3, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '6 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 40, pricePerLiter: 32, totalCost: 1280, status: 'คาลเท็กซ์' },
+    { id: 4, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '4 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 60, pricePerLiter: 28, totalCost: 1680, status: 'บางจาก' },
+    { id: 5, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '10 ล้อ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 100, pricePerLiter: 32, totalCost: 3200, status: 'คาลเท็กซ์' },
+    { id: 6, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '6 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 20, pricePerLiter: 28, totalCost: 560, status: 'บางจาก' },
+    { id: 7, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '4 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'เบนซิน', liters: 32, pricePerLiter: 32, totalCost: 1024, status: 'ปตท.' },
+    { id: 8, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '4 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 40, pricePerLiter: 32, totalCost: 1280, status: 'ปตท.' },
+    { id: 9, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '10 ล้อ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'เบนซิน', liters: 100, pricePerLiter: 28, totalCost: 2800, status: 'บางจาก' },
+    { id: 10, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '4 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 10, pricePerLiter: 32, totalCost: 3200, status: 'คาลเท็กซ์' },
+    { id: 11, date: '26/02/67 10:00', licensePlate: 'บว5432', vehicleType: '4 ล้อตู้ทึบ', driverName: 'พรสิทธิ์ ชำนาญการ', fuelType: 'เบนซิน', liters: 25, pricePerLiter: 35, totalCost: 875, status: 'ปตท.' },
+    { id: 12, date: '26/02/67 11:00', licensePlate: 'สส9876', vehicleType: '6 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 50, pricePerLiter: 30, totalCost: 1500, status: 'บางจาก' },
+    { id: 13, date: '27/02/67 15:00', licensePlate: 'กก1111', vehicleType: '10 ล้อ', driverName: 'พรสิทธิ์ ชำนาญการ', fuelType: 'ดีเซล', liters: 120, pricePerLiter: 32, totalCost: 3840, status: 'คาลเท็กซ์' },
+    { id: 14, date: '27/02/67 16:00', licensePlate: 'ขข2222', vehicleType: '4 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'เบนซิน', liters: 30, pricePerLiter: 35, totalCost: 1050, status: 'ปตท.' },
+    { id: 15, date: '28/02/67 09:00', licensePlate: 'คค3333', vehicleType: '6 ล้อตู้ทึบ', driverName: 'พรสิทธิ์ ชำนาญการ', fuelType: 'ดีเซล', liters: 60, pricePerLiter: 30, totalCost: 1800, status: 'บางจาก' },
+    { id: 16, date: '28/02/67 10:00', licensePlate: 'งง4444', vehicleType: '10 ล้อ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'เบนซิน', liters: 150, pricePerLiter: 35, totalCost: 5250, status: 'คาลเท็กซ์' },
+    { id: 17, date: '29/02/67 13:00', licensePlate: 'จจ5555', vehicleType: '4 ล้อตู้ทึบ', driverName: 'พรสิทธิ์ ชำนาญการ', fuelType: 'ดีเซล', liters: 22, pricePerLiter: 32, totalCost: 704, status: 'ปตท.' },
+    { id: 18, date: '29/02/67 14:00', licensePlate: 'ฉฉ6666', vehicleType: '6 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'เบนซิน', liters: 45, pricePerLiter: 35, totalCost: 1575, status: 'บางจาก' },
+    { id: 19, date: '01/03/67 17:00', licensePlate: 'ชช7777', vehicleType: '10 ล้อ', driverName: 'พรสิทธิ์ ชำนาญการ', fuelType: 'ดีเซล', liters: 110, pricePerLiter: 30, totalCost: 3300, status: 'คาลเท็กซ์' },
+    { id: 20, date: '01/03/67 18:00', licensePlate: 'ซซ8888', vehicleType: '4 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'เบนซิน', liters: 28, pricePerLiter: 35, totalCost: 980, status: 'ปตท.' },
+    { id: 21, date: '02/03/67 12:00', licensePlate: 'ฌฌ9999', vehicleType: '6 ล้อตู้ทึบ', driverName: 'พรสิทธิ์ ชำนาญการ', fuelType: 'ดีเซล', liters: 55, pricePerLiter: 32, totalCost: 1760, status: 'บางจาก' },
+    { id: 22, date: '02/03/67 13:00', licensePlate: 'ญญ0000', vehicleType: '10 ล้อ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'เบนซิน', liters: 130, pricePerLiter: 35, totalCost: 4550, status: 'คาลเท็กซ์' },
+    { id: 23, date: '03/03/67 16:00', licensePlate: 'ฎฎ1111', vehicleType: '4 ล้อตู้ทึบ', driverName: 'พรสิทธิ์ ชำนาญการ', fuelType: 'ดีเซล', liters: 24, pricePerLiter: 30, totalCost: 720, status: 'ปตท.' },
+    { id: 24, date: '03/03/67 17:00', licensePlate: 'ฐฐ2222', vehicleType: '6 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'เบนซิน', liters: 48, pricePerLiter: 35, totalCost: 1680, status: 'บางจาก' },
+];
