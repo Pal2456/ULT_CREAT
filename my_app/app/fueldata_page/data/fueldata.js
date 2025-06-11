@@ -1,17 +1,4 @@
-export interface FuelDataTable {
-  id: number;
-  date: string;
-  licensePlate: string;
-  vehicleType: string;
-  driverName: string;
-  fuelType: 'ดีเซล' | 'เบนซิน';
-  liters: number;
-  pricePerLiter: number;
-  totalCost: number;
-  status: 'ปตท.' | 'บางจาก' | 'คาลเท็กซ์';
-}
-
-export const fueldata: FuelDataTable[] = [
+export const fueldata = [
     { id: 1, date: '25/02/67 15:00', licensePlate: 'อก1212', vehicleType: '4 ล้อตู้ทึบ', driverName: 'พรสิทธิ์ ชำนาญการ', fuelType: 'ดีเซล', liters: 20, pricePerLiter: 32, totalCost: 640, status: 'ปตท.' },
     { id: 2, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '6 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 40, pricePerLiter: 28, totalCost: 1120, status: 'บางจาก' },
     { id: 3, date: '25/02/67 15:00', licensePlate: 'กน6789', vehicleType: '6 ล้อตู้ทึบ', driverName: 'ธนากรณ์ สุขเกษม', fuelType: 'ดีเซล', liters: 40, pricePerLiter: 32, totalCost: 1280, status: 'คาลเท็กซ์' },
