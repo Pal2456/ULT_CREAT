@@ -1,8 +1,9 @@
 'use client';
 
-import { Button, Col, DatePicker, Divider, Form, Input, Row, Select, Typography, ConfigProvider } from 'antd';
+import { Button, Col, DatePicker, Divider, Form, Input, Row, Select, Typography, ConfigProvider, Modal } from 'antd';
 import { useState, useEffect } from 'react';
 import 'antd/dist/reset.css';
+import Link from 'next/link';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -11,6 +12,7 @@ export default function Home() {
   const [form] = Form.useForm();
   const [isFormValid, setIsFormValid] = useState(false);
   const [formValues, setFormValues] = useState({});
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   // กำหนดธีมสีสำหรับ Select
   const customTheme = {
@@ -72,15 +74,16 @@ export default function Home() {
 
   // เมื่อกดปุ่มสร้าง
   const handleSubmit = async () => {
-    try {
-      const values = await form.validateFields();
-      console.log('Form values:', values);
-      // ส่งข้อมูลไปยัง API หรือประมวลผลต่อไป
-      alert('สร้างรายการน้ำมันสำเร็จ!');
-    } catch (error) {
-      console.error('Validation failed:', error);
-    }
-  };
+  try {
+    const values = await form.validateFields();
+    console.log('Form values:', values);
+    // popup หลังจากบันทึกสำเร็จ
+    setIsModalVisible(true);
+  } catch (error) {
+    console.error('Validation failed:', error);
+  }
+};
+
 
   return (
     <ConfigProvider theme={customTheme}>
@@ -197,7 +200,7 @@ export default function Home() {
               <Form.Item 
                 label="วันเวลาที่เติม" 
                 name="datetime"
-                rules={[{  message: 'กรุณาเลือกวันเวลาที่เติม' }]}
+                
               >
                 <DatePicker showTime style={{ width: '100%' }} placeholder="วันที่เติม" />
               </Form.Item>
@@ -264,7 +267,7 @@ export default function Home() {
                   readOnly
                   style={{ 
                     backgroundColor: '#f5f5f5',
-                    color: '#1890ff',
+                    color: '#000000',
                     fontWeight: 'bold'
                   }}
                 />
@@ -307,6 +310,23 @@ export default function Home() {
               </Button>
             </Col>
           </Row>
+          
+          <Modal
+            title="สร้างรายการสำเร็จ"
+            open={isModalVisible}
+            onCancel={() => setIsModalVisible(false)}
+            footer={[
+              <Button key="cancel" onClick={() => setIsModalVisible(false)}>
+                ปิด
+              </Button>,
+              <Link key="info" href="/info">
+                <Button type="primary">ไปที่หน้า Info</Button>
+              </Link>
+            ]}
+          >
+            <p>คุณได้สร้างรายการเรียบร้อยแล้ว</p>
+          </Modal>
+          
 
           {/* แสดงสถานะของฟอร์ม */}
           <Row justify="center" style={{ marginTop: 16 }}>
