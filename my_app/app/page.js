@@ -339,7 +339,6 @@ export default function Home() {
               </Button>
             </Col>
           </Row>
-
           
             <Modal
               title="สร้างรายการสำเร็จ"
