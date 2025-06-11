@@ -11,8 +11,13 @@
   "dependencies": {
     "antd": "^5.25.4",
     "next": "^15.3.3",
+<<<<<<< HEAD
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+=======
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+>>>>>>> 209b9be6e6a832dded9e9087da4c6d4d31288a0e
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
