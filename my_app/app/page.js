@@ -16,7 +16,7 @@ export default function Home() {
   const customTheme = {
     token: {
       colorPrimary: '#7B41B3',
-      fontSize: 16,
+      fontSize: 16, // Global font size
     },
     components: {
       Select: {
@@ -58,6 +58,7 @@ export default function Home() {
       const liters = parseFloat(values.liters) || 0;
       const pricePerLiter = parseFloat(values.pricePerLiter) || 0;
       values.total = (liters * pricePerLiter).toFixed(2);
+      console.log('📦 ข้อมูลที่ถูกส่ง:', values);
       setFormValues(values);
       setIsModalVisible(true);
     } catch (error) {
@@ -68,18 +69,58 @@ export default function Home() {
   return (
     <ConfigProvider theme={customTheme}>
       <div style={{ maxWidth: 800, margin: '40px auto', background: '#fff', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-        <Row justify="space-between" align="middle" style={{ marginBottom: 15, width: '100%' }}>
-          <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#000' }}>สร้างรายการน้ำมัน</div>
-          <Button type="text" style={{ color: '#000', fontSize: '90px', fontWeight: 'bold', lineHeight: 1 }}>X</Button>
+        <Row justify="space-between" align="middle" style={{ marginBottom: 0 }}>
+          
+          <>
+            <Row justify="space-between" align="middle" style={{ marginBottom: 15, width: '100%' }}>
+              <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#000' }}>
+                สร้างรายการน้ำมัน
+              </div>
+
+              <Button
+                type="text"
+                style={{
+                  color: '#000',        // Black color
+                  fontSize: '90px',     // Bigger size
+                  fontWeight: 'bold',   // Optional for thicker X
+                  lineHeight: 1
+                }}
+              >
+                X
+              </Button>
+
+            </Row>
+
+            <div
+              style={{
+                height: '1px',
+                backgroundColor: '#e0e0e0',
+                width: '100%',
+                marginBottom: 20, // space after the line
+              }}
+            />
+          </>
+
+          
         </Row>
         <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginBottom: 20 }} />
 
         <Form form={form} layout="vertical" onValuesChange={onValuesChange}>
-          <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '999px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลรถและคนขับ</div>
+          <div style={{
+            backgroundColor: '#7B41B31A',
+            color: '#8000b3',
+            padding: '12px 20px',
+            borderRadius: '999px',
+            fontWeight: '600',
+            marginBottom: '24px',
+            fontSize: '16px'
+          }}>
+            ข้อมูลรถและคนขับ
+          </div>
 
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ประเภทรถ</span>} name="carType">
+              <Form.Item label="ประเภทรถ" name="carType">
                 <Select placeholder="ประเภทรถ" allowClear>
                   <Option value="4ล้อ">4 ล้อ</Option>
                   <Option value="6ล้อ">6 ล้อ</Option>
@@ -88,14 +129,14 @@ export default function Home() {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ทะเบียน</span>} name="plate">
+              <Form.Item label="ทะเบียน" name="plate">
                 <Select placeholder="ทะเบียน" allowClear>
                   <Option value="1กข1234">1กข1234</Option>
                 </Select>
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ชื่อคนขับ</span>} name="driver">
+              <Form.Item label="ชื่อคนขับ" name="driver">
                 <Select placeholder="ชื่อคนขับ" allowClear>
                   <Option value="สมชาย">สมชาย</Option>
                 </Select>
@@ -103,21 +144,31 @@ export default function Home() {
             </Col>
           </Row>
 
-          <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '999px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลการเติมน้ำมัน</div>
+          <div style={{
+            backgroundColor: '#7B41B31A',
+            color: '#8000b3',
+            padding: '12px 20px',
+            borderRadius: '999px',
+            fontWeight: '600',
+            marginBottom: '24px',
+            fontSize: '16px'
+          }}>
+            ข้อมูลการเติมน้ำมัน
+          </div>
 
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>วันเวลาที่เติม</span>} name="datetime">
+              <Form.Item label="วันเวลาที่เติม" name="datetime">
                 <DatePicker showTime style={{ width: '100%' }} placeholder="วันที่เติม" />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>เลขไมล์</span>} name="mileage">
+              <Form.Item label="เลขไมล์" name="mileage">
                 <Input placeholder="เลขไมล์" />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ประเภทน้ำมัน</span>} name="fuelType">
+              <Form.Item label="ประเภทน้ำมัน" name="fuelType">
                 <Select placeholder="ประเภทน้ำมัน" allowClear>
                   <Option value="ดีเซล">ดีเซล</Option>
                   <Option value="เบนซิน">เบนซิน</Option>
@@ -125,22 +176,26 @@ export default function Home() {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>จำนวนลิตร</span>} name="liters">
+              <Form.Item label="จำนวนลิตร" name="liters">
                 <Input placeholder="จำนวนลิตร" />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ราคาน้ำมัน / ลิตร</span>} name="pricePerLiter">
+              <Form.Item label="ราคาน้ำมัน / ลิตร" name="pricePerLiter">
                 <Input placeholder="ราคาน้ำมัน / ลิตร" />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>จำนวนเงินที่เติม</span>} name="total">
-                <Input readOnly placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)" style={{ backgroundColor: '#f5f5f5', color: '#000', fontWeight: 'bold' }} />
+              <Form.Item label="จำนวนเงินที่เติม" name="total">
+                <Input
+                  placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)"
+                  readOnly
+                  style={{ backgroundColor: '#f5f5f5', color: '#000', fontWeight: 'bold' }}
+                />
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>สถานีบริการน้ำมัน</span>} name="station">
+              <Form.Item label="สถานีบริการน้ำมัน" name="station">
                 <Select placeholder="สถานีบริการน้ำมัน" allowClear>
                   <Option value="ptt">ปตท.</Option>
                   <Option value="บางจาก">บางจาก</Option>
@@ -156,15 +211,32 @@ export default function Home() {
 
           <Row justify="center" gutter={16} style={{ marginTop: 32 }}>
             <Col>
-              <Button size="large" style={{ padding: '12px 47px', fontSize: '16px', height: '48px', borderRadius: '8px' }}>ยกเลิก</Button>
+              <Button size="large" style={{ padding: '12px 47px', fontSize: '16px', height: '48px', borderRadius: '8px' }}>
+                ยกเลิก
+              </Button>
             </Col>
             <Col>
-              <Button size="large" type="primary" disabled={!isFormValid} onClick={handleSubmit} style={{ padding: '12px 47px', fontSize: '16px', height: '48px', borderRadius: '8px', opacity: isFormValid ? 1 : 0.5, cursor: isFormValid ? 'pointer' : 'not-allowed' }}>สร้าง</Button>
+              <Button
+                size="large"
+                type="primary"
+                disabled={!isFormValid}
+                onClick={handleSubmit}
+                style={{
+                  padding: '12px 47px',
+                  fontSize: '16px',
+                  height: '48px',
+                  borderRadius: '8px',
+                  opacity: isFormValid ? 1 : 0.5,
+                  cursor: isFormValid ? 'pointer' : 'not-allowed',
+                }}
+              >
+                สร้าง
+              </Button>
             </Col>
           </Row>
 
           <Modal
-            title={<span style={{ fontSize: '18px', fontWeight: 600 }}>สร้างรายการสำเร็จ</span>}
+             title={<span style={{ fontSize: '18px', fontWeight: 600 }}>สร้างรายการสำเร็จ</span>}
             open={isModalVisible}
             onCancel={() => setIsModalVisible(false)}
             footer={[
@@ -173,17 +245,18 @@ export default function Home() {
             ]}
           >
             <div>
-              <p><strong>ประเภทรถ:</strong> {formValues.carType}</p>
-              <p><strong>ทะเบียน:</strong> {formValues.plate}</p>
-              <p><strong>ชื่อคนขับ:</strong> {formValues.driver}</p>
-              <p><strong>วันเวลาที่เติม:</strong> {formValues.datetime?.format?.("YYYY-MM-DD HH:mm:ss") || String(formValues.datetime)}</p>
-              <p><strong>เลขไมล์:</strong> {formValues.mileage}</p>
-              <p><strong>ประเภทน้ำมัน:</strong> {formValues.fuelType}</p>
-              <p><strong>จำนวนลิตร:</strong> {formValues.liters}</p>
-              <p><strong>ราคาน้ำมัน / ลิตร:</strong> {formValues.pricePerLiter}</p>
-              <p><strong>จำนวนเงินที่เติม:</strong> {formValues.total}</p>
-              <p><strong>สถานีบริการน้ำมัน:</strong> {formValues.station}</p>
+              <p><span className="force-bold">ประเภทรถ:</span> {formValues.carType}</p>
+              <p><span className="force-bold">ทะเบียน:</span> {formValues.plate}</p>
+              <p><span className="force-bold">ชื่อคนขับ:</span> {formValues.driver}</p>
+              <p><span className="force-bold">วันเวลาที่เติม:</span> {formValues.datetime?.format?.("YYYY-MM-DD HH:mm:ss") || String(formValues.datetime)}</p>
+              <p><span className="force-bold">เลขไมล์:</span> {formValues.mileage}</p>
+              <p><span className="force-bold">ประเภทน้ำมัน:</span> {formValues.fuelType}</p>
+              <p><span className="force-bold">จำนวนลิตร:</span> {formValues.liters}</p>
+              <p><span className="force-bold">ราคาน้ำมัน / ลิตร:</span> {formValues.pricePerLiter}</p>
+              <p><span className="force-bold">จำนวนเงินที่เติม:</span> {formValues.total}</p>
+              <p><span className="force-bold">สถานีบริการน้ำมัน:</span> {formValues.station}</p>
             </div>
+
           </Modal>
         </Form>
       </div>
