@@ -1,36 +1,40 @@
-'use client';
+'use client'; // ✅ ระบุว่า Component นี้จะรันฝั่ง client (Next.js 13+)
 
+// ⛓️ Import Components ที่จำเป็น
 import { Button, Row, Col, Drawer } from 'antd';
 import { useState } from 'react';
 import FuelForm from './FuelForm';
-const handleFormSubmit = (newItem) => {
-  onAdd(newItem); // ส่ง newItem กลับไปให้ Page1
-  setIsDrawerOpen(false);
-};
+
 
 export default function FuelTable({ data, pagination, onAdd }) {
+  // 📦 state สำหรับควบคุม Drawer
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
+  // ✅ ฟังก์ชันเปิด Drawer
   const handleCreateNew = () => {
     setIsDrawerOpen(true);
   };
 
+  // ✅ ฟังก์ชันปิด Drawer
   const handleCloseDrawer = () => {
     setIsDrawerOpen(false);
   };
 
+  // ✅ ฟังก์ชันเมื่อ form ส่งข้อมูลสำเร็จ
   const handleFormSubmit = (newItem) => {
-    onAdd(newItem); // ส่งไปยัง page1
-    setIsDrawerOpen(false); // ปิด drawer หลัง submit
+    onAdd(newItem);            // 👉 ส่งข้อมูลกลับไปยัง `Home` page (ผ่าน props)
+    setIsDrawerOpen(false);    // ✅ ปิด Drawer
   };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
+      {/* 🔰 Header */}
       <Row justify="space-between" align="middle" className="mb-4">
         <Col>
           <h2 className="text-lg font-bold text-black">รายการน้ำมันทั้งหมด</h2>
         </Col>
         <Col>
+          {/* ✅ ปุ่มสร้างรายการน้ำมัน */}
           <Button
             type="primary"
             onClick={handleCreateNew}
@@ -41,8 +45,10 @@ export default function FuelTable({ data, pagination, onAdd }) {
         </Col>
       </Row>
 
+      {/* 🧾 ตารางรายการน้ำมัน */}
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
+          {/* 🔻 หัวตาราง */}
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">วันที่เติม</th>
@@ -56,6 +62,8 @@ export default function FuelTable({ data, pagination, onAdd }) {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">สถานี</th>
             </tr>
           </thead>
+
+          {/* 🔽 เนื้อหาตาราง */}
           <tbody className="bg-white divide-y divide-gray-200">
             {data.map((item) => (
               <tr key={item.id}>
@@ -74,18 +82,19 @@ export default function FuelTable({ data, pagination, onAdd }) {
         </table>
       </div>
 
+      {/* 📄 Pagination component (ส่งมาจากหน้า Home) */}
       <div className="mt-4 border-t pt-4">
         {pagination}
       </div>
 
-      {/* ✅ Drawer Popup */}
+      {/* ✅ Drawer popup สำหรับสร้างฟอร์ม */}
       <Drawer
-       
         placement="right"
         onClose={handleCloseDrawer}
         open={isDrawerOpen}
         width={600}
       >
+        {/* 📋 ส่ง function onSubmit ไปยัง FuelForm */}
         <FuelForm onSubmit={handleFormSubmit} onCancel={handleCloseDrawer} />
       </Drawer>
     </div>
