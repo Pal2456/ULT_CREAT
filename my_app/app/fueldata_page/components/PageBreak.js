@@ -67,7 +67,7 @@ export default function PageBreak({ totalItems, itemsPerPage, currentPage, onPag
     };
 
     return (
-        <div className="mt-6 flex items-center justify-between">
+        <div className="mt-6 mr-auto flex items-center space-x-2">
             <p className="text-sm text-gray-700">
                 {totalItems} Total Items
             </p>
