@@ -68,20 +68,40 @@ export default function Home() {
 
   return (
     <ConfigProvider theme={customTheme}>
-      <div style={{
-        maxWidth: 800,
-        margin: '40px auto',
-        background: '#fff',
-        padding: 24,
-        borderRadius: 12,
-        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-        fontSize: '16px',
-        fontWeight: 500,
-        lineHeight: 1.5
-      }}>
-        <Row justify="space-between" align="middle" style={{ marginBottom: 15 }}>
-          <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#000' }}>สร้างรายการน้ำมัน</div>
-          <Button type="text" style={{ color: '#000', fontSize: '28px', fontWeight: 'bold', lineHeight: 1 }}>X</Button>
+      <div style={{ maxWidth: 800, margin: '40px auto', background: '#fff', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+        <Row justify="space-between" align="middle" style={{ marginBottom: 0 }}>
+          
+          <>
+            <Row justify="space-between" align="middle" style={{ marginBottom: 15, width: '100%' }}>
+              <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#000' }}>
+                สร้างรายการน้ำมัน
+              </div>
+
+              <Button
+                type="text"
+                style={{
+                  color: '#000',        // Black color
+                  fontSize: '90px',     // Bigger size
+                  fontWeight: 'bold',   // Optional for thicker X
+                  lineHeight: 1
+                }}
+              >
+                X
+              </Button>
+
+            </Row>
+
+            <div
+              style={{
+                height: '1px',
+                backgroundColor: '#e0e0e0',
+                width: '100%',
+                marginBottom: 20, // space after the line
+              }}
+            />
+          </>
+
+          
         </Row>
         <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginBottom: 20 }} />
 

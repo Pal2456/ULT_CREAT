@@ -1,17 +1,9 @@
 'use client';
 
-interface PaginationProps {
-    totalItems: number;
-    itemsPerPage: number;
-    currentPage: number;
-    onPageChange: (page: number) => void;
-    onItemsPerPageChange: (size: number) => void;
-}
-
-export default function PageBreak({ totalItems, itemsPerPage, currentPage, onPageChange, onItemsPerPageChange }: PaginationProps) {
+export default function PageBreak({ totalItems, itemsPerPage, currentPage, onPageChange, onItemsPerPageChange }) {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-    const handlePageChange = (page: number) => {
+    const handlePageChange = (page) => {
         if (page >= 1 && page <= totalPages) {
             onPageChange(page);
         }

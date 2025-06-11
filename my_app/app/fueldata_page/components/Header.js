@@ -1,16 +1,7 @@
 'use client';
 import { Search } from 'lucide-react';
-interface HeaderProps {
-    onSearch: (term: string) => void;
-    onFuelTypeChange: (fuelType: string) => void;
-    onDateChange: (date: string) => void;
-    onClear: () => void;
-    searchTerm: string;
-    fuelType: string;
-    date: string;
-}
 
-export default function Header({ onSearch, onFuelTypeChange, onDateChange, onClear, searchTerm, fuelType, date }: HeaderProps) {
+export default function Header({ onSearch, onFuelTypeChange, onDateChange, onClear, searchTerm, fuelType, date }) {
     const handleCreateNew = () => {
         console.log("Create New Item button clicked!");
     };
