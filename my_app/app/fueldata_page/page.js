@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import FuelTable from './components/FuelTable';
 import PageBreak from './components/PageBreak';
-import { fueldata, FuelDataTable } from './data/fueldata';
+import { fueldata } from './data/fueldata';
 
 export default function Home() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -20,7 +20,7 @@ export default function Home() {
         setCurrentPage(1);
     };
 
-    const handleItemsPerPageChange = (size: number) => {
+    const handleItemsPerPageChange = (size) => {
         setItemsPerPage(size);
         setCurrentPage(1);
     };

@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/fueldata_page/page.js", "app/fueldata_page/components/Header.js", "app/fueldata_page/components/FuelTable.js", "app/fueldata_page/components/PageBreak.js", "app/fueldata_page/data/fueldata.js"  ],
   "exclude": [
     "node_modules"
   ]

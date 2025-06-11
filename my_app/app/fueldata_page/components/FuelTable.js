@@ -1,10 +1,4 @@
-import { FuelDataTable } from '../data/fueldata';
-
-interface FuelTableProps {
-    data: FuelDataTable[];
-}
-
-export default function FuelTable({ data }: FuelTableProps) {
+export default function FuelTable({ data }) {
     return (
         <div className="bg-white p-4 rounded-lg shadow-md">
             <h2 className="text-lg font-bold mb-4 text-black">รายการน้ำมันทั้งหมด</h2>
