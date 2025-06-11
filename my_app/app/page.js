@@ -81,11 +81,34 @@ export default function Home() {
           flexDirection: 'column'
         }}
       >
-        <Row justify="space-between" align="middle" style={{ marginBottom: 15, width: '100%' }}>
-          <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#000' }}>สร้างรายการน้ำมัน</div>
-          <Button type="text" style={{ color: '#000', fontSize: '90px', fontWeight: 'bold', lineHeight: 1 }}>X</Button>
+        <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+          <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#000' }}>
+            สร้างรายการน้ำมัน
+          </div>
+          <Button
+            type="text"
+            style={{
+              color: '#000',
+              fontSize: '24px',
+              fontWeight: 'bold',
+              lineHeight: 1,
+              padding: 0,
+            }}
+          >
+            X
+          </Button>
         </Row>
-        <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginBottom: 20 }} />
+
+        {/* Force-visible separator line */}
+        <div
+          style={{
+            borderBottom: '1px solid #e0e0e0',
+            width: '100%',
+            marginTop: '12px',
+            marginBottom: '20px',
+          }}
+        />
+
 
         <Form form={form} layout="vertical" onValuesChange={onValuesChange}>
           <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '999px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลรถและคนขับ</div>
@@ -182,94 +205,105 @@ export default function Home() {
             </Col>
           </Row>
 
-          <Row justify="center" gutter={16} style={{ marginTop: 32 }}>
+          {/* Line above buttons */}
+          <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginTop: 24, marginBottom: 24 }} />
+
+          <Row justify="center" gutter={16}>
             <Col>
-              <Button size="large" style={{ padding: '12px 47px', fontSize: '16px', height: '48px', borderRadius: '8px' }}>ยกเลิก</Button>
+              <Button
+                size="large"
+                style={{
+                  padding: '12px 47px',
+                  fontSize: '16px',
+                  height: '48px',
+                  borderRadius: '8px',
+                }}
+              >
+                ยกเลิก
+              </Button>
             </Col>
             <Col>
-              <Button size="large" type="primary" disabled={!isFormValid} onClick={handleSubmit} style={{ padding: '12px 47px', fontSize: '16px', height: '48px', borderRadius: '8px', opacity: isFormValid ? 1 : 0.5, cursor: isFormValid ? 'pointer' : 'not-allowed' }}>สร้าง</Button>
+              <Button
+                size="large"
+                type="primary"
+                disabled={!isFormValid}
+                onClick={handleSubmit}
+                style={{
+                  padding: '12px 47px',
+                  fontSize: '16px',
+                  height: '48px',
+                  borderRadius: '8px',
+                  opacity: isFormValid ? 1 : 0.5,
+                  cursor: isFormValid ? 'pointer' : 'not-allowed',
+                }}
+              >
+                สร้าง
+              </Button>
             </Col>
           </Row>
 
+
           <Modal
-            title={<span style={{ fontSize: '18px', fontWeight: 600 }}>รายละเอียด</span>}
+            title={
+              <div>
+                <div style={{ fontSize: '18px', fontWeight: 600 }}>รายละเอียด</div>
+                <div style={{ height: '1px', backgroundColor: '#e0e0e0', marginTop: 8 }} />
+              </div>
+            }
             open={isModalVisible}
             onCancel={() => setIsModalVisible(false)}
             footer={[
               <Button key="cancel" onClick={() => setIsModalVisible(false)}>ปิด</Button>,
-              <Link key="info" href="/info"><Button type="primary">ไปที่หน้า Info</Button></Link>
+              <Link key="info" href="/info">
+                <Button type="primary">ไปที่หน้า Info</Button>
+              </Link>
             ]}
           >
-            {/* Section: ข้อมูลรถและคนขับ */}
-            <div style={{
-              backgroundColor: '#EBDCFB',
-              padding: '8px 16px',
-              borderRadius: '12px',
-              marginBottom: '16px',
-              fontWeight: '600',
-              color: '#8000b3'
-            }}>
-              ข้อมูลรถและคนขับ
+            <div style={{ marginBottom: 24 }}>
+              <div style={{ backgroundColor: '#F3E8FF', fontWeight: 600, padding: '6px 12px', borderRadius: 8, marginBottom: 16, color: '#7B41B3' }}>
+                ข้อมูลรถและคนขับ
+              </div>
+              <Row gutter={[16, 8]}>
+                <Col span={12}><strong>ประเภทรถ:</strong></Col>
+                <Col span={12}>{formValues.carType}</Col>
+
+                <Col span={12}><strong>ทะเบียน:</strong></Col>
+                <Col span={12}>{formValues.plate}</Col>
+
+                <Col span={12}><strong>ชื่อคนขับ:</strong></Col>
+                <Col span={12}>{formValues.driver}</Col>
+              </Row>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', rowGap: 6, marginBottom: 24 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>ประเภทรถ</span>
-                <span>{formValues.carType}</span>
+            <div>
+              <div style={{ backgroundColor: '#F3E8FF', fontWeight: 600, padding: '6px 12px', borderRadius: 8, marginBottom: 16, color: '#7B41B3' }}>
+                ข้อมูลการเติมน้ำมัน
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>ทะเบียน</span>
-                <span>{formValues.plate}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>ชื่อคนขับ</span>
-                <span>{formValues.driver}</span>
-              </div>
-            </div>
+              <Row gutter={[16, 8]}>
+                <Col span={12}><strong>วันเวลาที่เติม:</strong></Col>
+                <Col span={12}>{formValues.datetime?.format?.("DD/MM/YY HH:mm") || String(formValues.datetime)}</Col>
 
-            {/* Section: ข้อมูลการเติมน้ำมัน */}
-            <div style={{
-              backgroundColor: '#EBDCFB',
-              padding: '8px 16px',
-              borderRadius: '12px',
-              marginBottom: '16px',
-              fontWeight: '600',
-              color: '#8000b3'
-            }}>
-              ข้อมูลการเติมน้ำมัน
-            </div>
+                <Col span={12}><strong>เลขไมล์:</strong></Col>
+                <Col span={12}>{formValues.mileage} KM</Col>
 
-            <div style={{ display: 'flex', flexDirection: 'column', rowGap: 6 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>วันเวลาที่เติม</span>
-                <span>{formValues.datetime?.format?.("DD/MM/YY HH:mm") || String(formValues.datetime)}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>เลขไมล์</span>
-                <span>{formValues.mileage} KM</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>ประเภทน้ำมัน</span>
-                <span>{formValues.fuelType}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>จำนวนลิตร</span>
-                <span>{formValues.liters} liter</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>ราคาน้ำมัน / ลิตร</span>
-                <span>{Number(formValues.pricePerLiter).toFixed(2)} บาท</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>จำนวนเงินที่เติม</span>
-                <span>{Number(formValues.total).toLocaleString()} บาท</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>สถานีบริการน้ำมัน</span>
-                <span>{formValues.station}</span>
-              </div>
+                <Col span={12}><strong>ประเภทน้ำมัน:</strong></Col>
+                <Col span={12}>{formValues.fuelType}</Col>
+
+                <Col span={12}><strong>จำนวนลิตร:</strong></Col>
+                <Col span={12}>{formValues.liters} liter</Col>
+
+                <Col span={12}><strong>ราคาน้ำมัน / ลิตร:</strong></Col>
+                <Col span={12}>{parseFloat(formValues.pricePerLiter).toFixed(2)} บาท</Col>
+
+                <Col span={12}><strong>จำนวนเงินที่เติม:</strong></Col>
+                <Col span={12}>{parseFloat(formValues.total).toLocaleString()} บาท</Col>
+
+                <Col span={12}><strong>สถานีบริการน้ำมัน:</strong></Col>
+                <Col span={12}>{formValues.station}</Col>
+              </Row>
             </div>
           </Modal>
+
 
         </Form>
       </div>
