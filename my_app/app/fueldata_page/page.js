@@ -12,12 +12,14 @@ export default function Home() {
     const [date, setDate] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [dateKey, setDateKey] = useState(Date.now());
 
     const handleClearFilters = () => {
         setSearchTerm('');
         setFuelType('');
         setDate('');
         setCurrentPage(1);
+        setDateKey(Date.now());
     };
 
     const handleItemsPerPageChange = (size) => {
@@ -26,13 +28,28 @@ export default function Home() {
     };
 
     const filteredData = fueldata.filter(item => {
-        const itemDate = new Date(item.date.split(' ')[0].split('/').reverse().join('-'));
-        const filterDate = date ? new Date(date) : null;
-        
+        const datePart = item.date.split(' ')[0];
+        const [day, month, shortYear] = datePart.split('/');
+
+        const buddhistYear = parseInt(shortYear, 10) + 2500; // 67 -> 2567
+        const gregorianYear = buddhistYear - 543;
+
+        const itemDate = new Date(gregorianYear, parseInt(month, 10) - 1, parseInt(day, 10));
+
+        const [startDateString, endDateString] = date || [];
+        const startDate = startDateString ? new Date(startDateString) : null;
+        const endDate = endDateString ? new Date(endDateString) : null;
+
+        let isDateInRange = true;
+        if (startDate && endDate) {
+            startDate.setHours(0, 0, 0, 0);
+            endDate.setHours(23, 59, 59, 999);
+            isDateInRange = itemDate >= startDate && itemDate <= endDate;
+        }
         return (
             (searchTerm === '' || item.licensePlate.toLowerCase().includes(searchTerm.toLowerCase())) &&
             (fuelType === '' || item.fuelType === fuelType) &&
-            (!filterDate || (itemDate.toDateString() === filterDate.toDateString()))
+            isDateInRange
         );
     });
 
@@ -51,7 +68,7 @@ export default function Home() {
                 onClear={handleClearFilters}
                 searchTerm={searchTerm}
                 fuelType={fuelType}
-                date={date}
+                dateKey={dateKey}
             />
             <FuelTable data={paginatedData}
                 pagination={

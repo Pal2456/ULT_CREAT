@@ -6,8 +6,8 @@ import { SearchOutlined, ReloadOutlined } from '@ant-design/icons';
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
-export default function Header({ onSearch, onFuelTypeChange, onDateChange, onClear, searchTerm, fuelType, date }) {
-    const handleDateChange = ( {date}, {dateStrings} ) => {
+export default function Header({ onSearch, onFuelTypeChange, onDateChange, onClear, searchTerm, fuelType, dataKey }) {
+    const handleDateChange = (_dates, dateStrings ) => {
         onDateChange(dateStrings);
     };
 
@@ -39,9 +39,10 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
                     </Select>
                 </Col>
 
-                <Col xs={24} sm={12} md={4}>
+                <Col xs={24} sm={12} md={5}>
                     <label className="block text-sm font-medium text-gray-700 mb-1">วันที่</label>
                     <RangePicker
+                        datakey={dataKey}
                         placeholder={['วันที่เริ่มต้น', 'วันที่สิ้นสุด']}
                         onChange={handleDateChange}
                         style={{ width: '100%' }}
