@@ -100,7 +100,20 @@ export default function Home() {
 
   return (
     <ConfigProvider theme={customTheme}>
-      <div style={{ maxWidth: 800, margin: '40px auto', background: '#fff', padding: 24, borderRadius: 12, boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+        <div
+          style={{
+            width: '600px',
+            height: '852px',
+            margin: '40px auto',
+            background: '#fff',
+            padding: 24,
+            borderRadius: 12,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+            overflowY: 'auto',
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
         <Row justify="space-between" align="middle" style={{ marginBottom: 0 }}>
           
           <>
