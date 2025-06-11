@@ -73,16 +73,29 @@ export default function Home() {
   };
 
   // เมื่อกดปุ่มสร้าง
-  const handleSubmit = async () => {
+ const handleSubmit = async () => {
   try {
     const values = await form.validateFields();
-    console.log('Form values:', values);
-    // popup หลังจากบันทึกสำเร็จ
+
+    // คำนวณ total อีกครั้ง (เผื่อผู้ใช้ไม่ขยับตัวเลขหลัง input)
+    const liters = parseFloat(values.liters) || 0;
+    const pricePerLiter = parseFloat(values.pricePerLiter) || 0;
+    values.total = (liters * pricePerLiter).toFixed(2);
+
+    // log ข้อมูลลง console
+    console.log('📦 ข้อมูลที่ถูกส่ง:', values);
+
+    // บันทึกค่าเข้า state เพื่อเอาไปใช้ใน popup
+    setFormValues(values);
+
+    // แสดง popup
     setIsModalVisible(true);
+
   } catch (error) {
     console.error('Validation failed:', error);
   }
 };
+
 
 
   return (
@@ -311,21 +324,31 @@ export default function Home() {
             </Col>
           </Row>
           
-          <Modal
-            title="สร้างรายการสำเร็จ"
-            open={isModalVisible}
-            onCancel={() => setIsModalVisible(false)}
-            footer={[
-              <Button key="cancel" onClick={() => setIsModalVisible(false)}>
-                ปิด
-              </Button>,
-              <Link key="info" href="/info">
-                <Button type="primary">ไปที่หน้า Info</Button>
-              </Link>
-            ]}
-          >
-            <p>คุณได้สร้างรายการเรียบร้อยแล้ว</p>
-          </Modal>
+            <Modal
+              title="สร้างรายการสำเร็จ"
+              open={isModalVisible}
+              onCancel={() => setIsModalVisible(false)}
+              footer={[
+                <Button key="cancel" onClick={() => setIsModalVisible(false)}>
+                  ปิด
+                </Button>,
+                <Link key="info" href="/info">
+                  <Button type="primary">ไปที่หน้า Info</Button>
+                </Link>
+              ]}
+            >
+              <p><strong>ประเภทรถ:</strong> {formValues.carType}</p>
+              <p><strong>ทะเบียน:</strong> {formValues.plate}</p>
+              <p><strong>ชื่อคนขับ:</strong> {formValues.driver}</p>
+              <p><strong>วันเวลาที่เติม:</strong> {formValues.datetime?.format?.("YYYY-MM-DD HH:mm:ss") || String(formValues.datetime)}</p>
+              <p><strong>เลขไมล์:</strong> {formValues.mileage}</p>
+              <p><strong>ประเภทน้ำมัน:</strong> {formValues.fuelType}</p>
+              <p><strong>จำนวนลิตร:</strong> {formValues.liters}</p>
+              <p><strong>ราคาน้ำมัน / ลิตร:</strong> {formValues.pricePerLiter}</p>
+              <p><strong>จำนวนเงินที่เติม:</strong> {formValues.total}</p>
+              <p><strong>สถานีบริการน้ำมัน:</strong> {formValues.station}</p>
+            </Modal>
+
           
 
           {/* แสดงสถานะของฟอร์ม */}
