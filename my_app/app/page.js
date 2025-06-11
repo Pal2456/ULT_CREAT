@@ -305,41 +305,24 @@ export default function Home() {
             </Col>
           </Row>
 
-          {/* This is the button row for ยกเลิก and สร้าง */}
           <Row justify="center" gutter={16} style={{ marginTop: 32 }}>
             <Col>
-              <Button
-                size="large"
-                style={{
-                  padding: '12px 47px',
-                  fontSize: '16px',
-                  height: '48px',
-                  borderRadius: '8px',
-                }}
-              >
-                ยกเลิก
-              </Button>
+              <Button>ยกเลิก</Button>
             </Col>
             <Col>
-              <Button
-                size="large"
-                type="primary"
+              <Button 
+                type="primary" 
                 disabled={!isFormValid}
                 onClick={handleSubmit}
                 style={{
-                  padding: '12px 47px',
-                  fontSize: '16px',
-                  height: '48px',
-                  borderRadius: '8px',
                   opacity: isFormValid ? 1 : 0.5,
-                  cursor: isFormValid ? 'pointer' : 'not-allowed',
+                  cursor: isFormValid ? 'pointer' : 'not-allowed'
                 }}
               >
                 สร้าง
               </Button>
             </Col>
           </Row>
-
           
             <Modal
               title="สร้างรายการสำเร็จ"
