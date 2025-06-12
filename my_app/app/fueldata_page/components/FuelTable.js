@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Button, Row, Col, Drawer, Typography, Card, Table } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined } from '@ant-design/icons';
 import FuelForm from './FuelForm';
 
 const { Title } = Typography;
@@ -37,10 +37,19 @@ export default function FuelTable({ data, pagination, onAdd }) {
 
   return (
     <>
-      <Card>
+      <Card style={{ fontFamily: 'Prompt, sans-serif' }}>
         <Row justify="space-between" align="middle" style={{ marginBottom: 16 }}>
           <Col>
-            <Title level={5} style={{ margin: 0, color: '#2B2C30' }}>
+            <Title
+              level={5}
+              style={{
+                margin: 0,
+                color: '#2B2C30',
+                fontSize: '16px',
+                fontFamily: 'Prompt, sans-serif',
+                fontWeight: 500,
+              }}
+            >
               รายการน้ำมันทั้งหมด
             </Title>
           </Col>
@@ -50,16 +59,26 @@ export default function FuelTable({ data, pagination, onAdd }) {
               onClick={handleCreateNew}
               style={{
                 backgroundColor: '#7B41B3',
-                borderRadius: '999px',
+                borderRadius: '8px',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                padding: '0 16px',
+                height: '36px',
+                padding: '0 12px',
+                fontSize: '16px',
+                fontFamily: 'Prompt, sans-serif',
+                fontWeight: 500,
+                color: '#FFFFFF',
               }}
               icon={
-                <span className="plus-circle">
-                  <PlusOutlined />
-                </span>
+                <PlusCircleOutlined
+                  style={{
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    strokeWidth: 3,
+                    color: 'white',
+                  }}
+                />
               }
             >
               สร้างรายการน้ำมัน
@@ -73,6 +92,7 @@ export default function FuelTable({ data, pagination, onAdd }) {
           pagination={false}
           rowKey="id"
           scroll={{ x: 'max-content' }}
+          style={{ fontFamily: 'Prompt, sans-serif', fontSize: '12px', color: '#2B2C30' }}
         />
 
         <div style={{ marginTop: 24, borderTop: '1px solid #f0f0f0', paddingTop: 16 }}>
@@ -85,6 +105,10 @@ export default function FuelTable({ data, pagination, onAdd }) {
           open={isDrawerOpen}
           width={600}
           title="สร้างรายการน้ำมันใหม่"
+          styles={{
+            header: { fontFamily: 'Prompt, sans-serif', fontSize: '16px', color: '#2B2C30' },
+            body: { fontFamily: 'Prompt, sans-serif' },
+          }}
         >
           <FuelForm onSubmit={handleFormSubmit} onCancel={handleCloseDrawer} />
         </Drawer>
@@ -95,12 +119,12 @@ export default function FuelTable({ data, pagination, onAdd }) {
           display: inline-flex;
           justify-content: center;
           align-items: center;
-          width: 24px;
-          height: 24px;
+          width: 20px;
+          height: 20px;
           border: 2px solid white;
           border-radius: 50%;
           color: white;
-          font-size: 12px;
+          font-size: 10px;
         }
       `}</style>
     </>

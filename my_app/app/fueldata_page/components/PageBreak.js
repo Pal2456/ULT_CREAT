@@ -30,8 +30,8 @@ export default function PageBreak({
       <style jsx global>{`
         /* Active page */
         .custom-pagination .ant-pagination-item-active {
-          background-color: #7B41B3;
-          border-color: #7B41B3;
+          background-color: #76108F;
+          border-color: #76108F;
         }
 
         .custom-pagination .ant-pagination-item-active a {
@@ -40,7 +40,7 @@ export default function PageBreak({
 
         /* Hover on page item */
         .custom-pagination .ant-pagination-item:hover {
-          border-color: #7B41B3;
+          border-color: #76108F;
         }
 
         /* Default page item color */

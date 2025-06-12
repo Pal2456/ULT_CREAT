@@ -85,7 +85,7 @@ export default function Home() {
   return (
     <Layout style={{ minHeight: '100vh', background: '#f5f5f5', padding: 24 }}>
       <Content>
-        <Title level={3} style={{ marginBottom: 24, color: '#2B2C30' }}>น้ำมัน</Title>
+      <Title level={3} style={{ fontSize: '20px', marginBottom: 24, color: '#2B2C30' }}>น้ำมัน</Title>
 
         <Header
           onSearch={setSearchTerm}

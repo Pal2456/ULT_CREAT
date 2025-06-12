@@ -58,7 +58,7 @@ a {
 .ant-select,
 .ant-btn {
   font-family: 'Prompt', sans-serif !important;
-  font-size: 14px !important;
+  font-size: 14px ;
   font-weight: 500 !important;
   line-height: 1 !important;
 }
