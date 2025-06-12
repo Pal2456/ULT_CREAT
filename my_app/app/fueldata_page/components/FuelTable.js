@@ -98,19 +98,59 @@ export default function FuelTable({ data, pagination, onAdd }) {
           {pagination}
         </div>
 
-        <Drawer
-          placement="right"
-          onClose={handleCloseDrawer}
-          open={isDrawerOpen}
-          width={600}
-          title="สร้างรายการน้ำมันใหม่"
-          styles={{
-            header: { fontFamily: 'Prompt, sans-serif', fontSize: '16px', color: '#2B2C30' },
-            body: { fontFamily: 'Prompt, sans-serif' },
-          }}
-        >
-          <FuelForm onSubmit={handleFormSubmit} onCancel={handleCloseDrawer} />
-        </Drawer>
+        {/* ✅ Drawer popup สำหรับสร้างฟอร์ม */}
+      <Drawer
+        placement="right"
+        open={isDrawerOpen}
+        onClose={handleCloseDrawer}
+        width={640}
+        title={null}
+        closable={false}
+        headerStyle={{ display: 'none' }}
+        style={{
+          background: '#fff',
+          boxShadow: 'none'
+        }}
+        bodyStyle={{
+          padding: 24,
+          paddingTop: 16,
+          height: '100vh',
+          overflowY: 'auto'
+        }}
+      >
+        {/* Custom Top Header Row */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 8
+        }}>
+          <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#000' }}>
+            สร้างรายการน้ำมัน
+          </div>
+          <Button
+            type="text"
+            onClick={handleCloseDrawer}
+            style={{
+              fontSize: '20px',
+              fontWeight: 'bold',
+              color: '#000',
+              lineHeight: 1,
+              padding: 0
+            }}
+          >
+            ✕
+          </Button>
+        </div>
+
+        {/* Divider Line */}
+        <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginBottom: 20 }} />
+
+        {/* 👉 Form continues below here */}
+        <FuelForm onSubmit={handleFormSubmit} onCancel={handleCloseDrawer} />
+
+
+      </Drawer>
       </Card>
 
       <style jsx global>{`
