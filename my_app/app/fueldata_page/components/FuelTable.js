@@ -47,7 +47,7 @@ export default function FuelTable({ data, pagination, onAdd }) {
                 color: '#2B2C30',
                 fontSize: '16px',
                 fontFamily: 'Prompt, sans-serif',
-                fontWeight: 500,
+                fontWeight: 400,
               }}
             >
               รายการน้ำมันทั้งหมด
@@ -65,10 +65,6 @@ export default function FuelTable({ data, pagination, onAdd }) {
                 gap: '8px',
                 height: '36px',
                 padding: '0 12px',
-                fontSize: '12px',
-                fontFamily: 'Prompt, sans-serif',
-                fontWeight: 500,
-                color: '#FFFFFF',
               }}
               icon={
                 <PlusCircleOutlined
@@ -81,7 +77,9 @@ export default function FuelTable({ data, pagination, onAdd }) {
                 />
               }
             >
+            <span style={{ fontWeight: 400, fontFamily: 'Prompt, sans-serif', fontSize: '12px' }}>
               สร้างรายการน้ำมัน
+            </span>
             </Button>
           </Col>
         </Row>
@@ -92,7 +90,8 @@ export default function FuelTable({ data, pagination, onAdd }) {
           pagination={false}
           rowKey="id"
           scroll={{ x: 'max-content' }}
-          style={{ fontFamily: 'Prompt, sans-serif', fontSize: '12px', color: '#2B2C30' }}
+          className="custom-table"
+          style={{ fontSize: '12px', color: '#2B2C30' }}
         />
 
         <div style={{ marginTop: 24, borderTop: '1px solid #f0f0f0', paddingTop: 16 }}>
@@ -114,17 +113,19 @@ export default function FuelTable({ data, pagination, onAdd }) {
         </Drawer>
       </Card>
 
-      <style jsx>{`
-        .plus-circle {
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          width: 20px;
-          height: 20px;
-          border: 2px solid white;
-          border-radius: 50%;
-          color: white;
-          font-size: 10px;
+      <style jsx global>{`
+        .custom-table .ant-table-thead > tr > th {
+          font-family: 'Prompt', sans-serif !important;
+          font-size: 14px;
+          color: #2B2C30;
+          font-weight: 500;
+        }
+
+        .custom-table .ant-table-tbody > tr > td {
+          font-family: 'Prompt', sans-serif !important;
+          font-size: 14px;
+          color: #2B2C30;
+          font-weight: 400;
         }
       `}</style>
     </>
