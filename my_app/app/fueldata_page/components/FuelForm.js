@@ -1,24 +1,16 @@
-'use client'; // ✅ ทำให้ Component นี้ใช้ Client-side rendering ใน Next.js 13+
+'use client';
 
-// 🧩 Import UI Components และ Hook ต่าง ๆ
 import { Button, Col, DatePicker, Form, Input, Row, Select, ConfigProvider, Modal } from 'antd';
 import { useState } from 'react';
-import 'antd/dist/reset.css'; // ✅ รีเซ็ต CSS สำหรับ Ant Design ให้สะอาด
+import 'antd/dist/reset.css';
 import Link from 'next/link';
 
-const { Option } = Select; // 👉 สร้าง alias สำหรับ Select.Option
+const { Option } = Select;
 
-export default function Home() {
-  // ✅ สร้าง form instance สำหรับควบคุมค่าฟอร์ม
+export default function FuelForm({ onSubmit, onCancel }) {
   const [form] = Form.useForm();
-
-  // 🔁 สร้าง state เพื่อเช็คว่าฟอร์มกรอกครบหรือยัง
   const [isFormValid, setIsFormValid] = useState(false);
-
-  // 💾 เก็บค่าฟอร์มที่ผู้ใช้กรอกไว้ใน state
   const [formValues, setFormValues] = useState({});
-
-  // 📦 State สำหรับแสดง Modal (สามารถใช้โชว์ preview ได้ ถ้าต้องการ)
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   // 🎨 Custom Theme สำหรับเปลี่ยนสีหลักของ Ant Design
@@ -248,6 +240,7 @@ export default function Home() {
           >
             <Button
               size="large"
+              onClick={onCancel} // ✅ Close drawer function from props
               style={{
                 width: '120px',
                 height: '40px',
@@ -257,6 +250,7 @@ export default function Home() {
             >
               ยกเลิก
             </Button>
+
             <Button
               size="large"
               type="primary"
@@ -274,6 +268,10 @@ export default function Home() {
               สร้าง
             </Button>
           </div>
+
+
+
+
 
           </div> {/* close main form container */}
           </ConfigProvider>
