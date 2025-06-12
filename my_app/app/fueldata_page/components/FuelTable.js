@@ -1,7 +1,7 @@
 'use client'; // ✅ ระบุว่า Component นี้จะรันฝั่ง client (Next.js 13+)
 
 // ⛓️ Import Components ที่จำเป็น
-import { Button, Row, Col, Drawer } from 'antd';
+import { Button, Row, Col, Drawer, Modal } from 'antd';
 import { useState } from 'react';
 import FuelForm from './FuelForm';
 
@@ -92,7 +92,13 @@ export default function FuelTable({ data, pagination, onAdd }) {
         placement="right"
         onClose={handleCloseDrawer}
         open={isDrawerOpen}
-        width={600}
+        width={640}
+        height={852}
+         bodyStyle={{
+          overflow: 'hidden',
+          height: '100vh',
+        }}
+
       >
         {/* 📋 ส่ง function onSubmit ไปยัง FuelForm */}
         <FuelForm onSubmit={handleFormSubmit} onCancel={handleCloseDrawer} />

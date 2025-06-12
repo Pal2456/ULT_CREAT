@@ -91,8 +91,8 @@ export default function Home() {
       >
         {/* 🔰 หัวเรื่อง */}
         <Row justify="space-between" align="middle" style={{ marginBottom: 15, width: '100%' }}>
-          <div style={{ fontSize: '20px', fontWeight: 'bold', color: '#000' }}>สร้างรายการน้ำมัน</div>
-          <Button type="text" style={{ color: '#000', fontSize: '90px', fontWeight: 'bold', lineHeight: 1 }}>X</Button>
+          <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#000' }}>สร้างรายการน้ำมัน</div>
+          <Button type="text" style={{ color: '#000', fontSize: '90px', fontWeight: 'bold', lineHeight: 1 }}></Button>
         </Row>
 
         {/* 🔻 เส้นคั่น */}
@@ -102,90 +102,148 @@ export default function Home() {
         <Form form={form} layout="vertical" onValuesChange={onValuesChange}>
           
           {/* 🔹 ส่วนที่ 1: ข้อมูลรถและคนขับ */}
-          <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '999px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลรถและคนขับ</div>
+          <div
+            style={{
+              backgroundColor: '#7B41B31A',
+              color: '#8000b3',
+              width: '552px',
+              height: '30px',
+              padding: '0 16px',
+              borderRadius: '8px',
+              fontWeight: 600,
+              fontSize: '14px',
+              display: 'flex',
+              alignItems: 'center',
+              borderBottom: '1px solid #e0e0e0',
+              gap: '8px'
+            }}
+          >
+            ข้อมูลรถและคนขับ
+          </div>
 
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ประเภทรถ</span>} name="carType">
-                <Select placeholder="ประเภทรถ" allowClear>
-                  <Option value="4ล้อ">4 ล้อ</Option>
-                  <Option value="6ล้อ">6 ล้อ</Option>
-                  <Option value="10ล้อ">10 ล้อ</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ทะเบียน</span>} name="plate">
-                <Select placeholder="ทะเบียน" allowClear>
-                  <Option value="1กข1234">1กข1234</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ชื่อคนขับ</span>} name="driver">
-                <Select placeholder="ชื่อคนขับ" allowClear>
-                  <Option value="สมชาย">สมชาย</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-          </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>ประเภทรถ</span>} name="carType">
+                  <Select placeholder="ประเภทรถ" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                    <Option value="4ล้อ">4 ล้อ</Option>
+                    <Option value="6ล้อ">6 ล้อ</Option>
+                    <Option value="10ล้อ">10 ล้อ</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>ทะเบียน</span>} name="plate">
+                  <Select placeholder="ทะเบียน" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                    <Option value="1กข1234">1กข1234</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>ชื่อคนขับ</span>} name="driver">
+                  <Select placeholder="ชื่อคนขับ" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                    <Option value="สมชาย">สมชาย</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
+
 
           {/* 🔹 ส่วนที่ 2: ข้อมูลการเติมน้ำมัน */}
-          <div style={{ backgroundColor: '#7B41B31A', color: '#8000b3', padding: '12px 20px', borderRadius: '999px', fontWeight: '600', marginBottom: '24px', fontSize: '16px' }}>ข้อมูลการเติมน้ำมัน</div>
+          <div
+            style={{
+              backgroundColor: '#7B41B31A',
+              color: '#8000b3',
+              width: '552px',
+              height: '30px',
+              padding: '0 16px',
+              borderRadius: '8px',
+              fontWeight: 600,
+              fontSize: '14px', // Adjusted font size for consistency
+              display: 'flex',
+              alignItems: 'center',
+              borderBottom: '1px solid #e0e0e0',
+              gap: '8px'
+            }}
+          >
+            ข้อมูลการเติมน้ำมัน
+          </div>
 
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>วันเวลาที่เติม</span>} name="datetime">
-                <DatePicker showTime style={{ width: '100%' }} placeholder="วันที่เติม" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>เลขไมล์</span>} name="mileage">
-                <Input placeholder="เลขไมล์" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ประเภทน้ำมัน</span>} name="fuelType">
-                <Select placeholder="ประเภทน้ำมัน" allowClear>
-                  <Option value="ดีเซล">ดีเซล</Option>
-                  <Option value="เบนซิน">เบนซิน</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>จำนวนลิตร</span>} name="liters">
-                <Input placeholder="จำนวนลิตร" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>ราคาน้ำมัน / ลิตร</span>} name="pricePerLiter">
-                <Input placeholder="ราคาน้ำมัน / ลิตร" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>จำนวนเงินที่เติม</span>} name="total">
-                <Input readOnly placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)" style={{ backgroundColor: '#f5f5f5', color: '#000', fontWeight: 'bold' }} />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label={<span style={{ fontWeight: 'bold' }}>สถานีบริการน้ำมัน</span>} name="station">
-                <Select placeholder="สถานีบริการน้ำมัน" allowClear>
-                  <Option value="ptt">ปตท.</Option>
-                  <Option value="บางจาก">บางจาก</Option>
-                  <Option value="เชลล์">เชลล์</Option>
-                  <Option value="เเอสโซ่">เอสโซ่</Option>
-                  <Option value="คาลเท็กซ์">คาลเท็กซ์</Option>
-                  <Option value="พีที">พีที</Option>
-                  <Option value="ซัลโก้">ซัลโก้</Option>
-                </Select>
-              </Form.Item>
-            </Col>
-          </Row>
+            <Row gutter={16}>
+              <Col span={12}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>วันเวลาที่เติม</span>} name="datetime">
+                  <DatePicker showTime style={{ width: 268, height: 40, fontSize: 14 }} placeholder="วันที่เติม" />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>เลขไมล์</span>} name="mileage">
+                  <Input placeholder="เลขไมล์" style={{ width: 268, height: 40, fontSize: 14 }} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>ประเภทน้ำมัน</span>} name="fuelType">
+                  <Select placeholder="ประเภทน้ำมัน" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                    <Option value="ดีเซล">ดีเซล</Option>
+                    <Option value="เบนซิน">เบนซิน</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>จำนวนลิตร</span>} name="liters">
+                  <Input placeholder="จำนวนลิตร" style={{ width: 268, height: 40, fontSize: 14 }} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>ราคาน้ำมัน / ลิตร</span>} name="pricePerLiter">
+                  <Input placeholder="ราคาน้ำมัน / ลิตร" style={{ width: 268, height: 40, fontSize: 14 }} />
+                </Form.Item>
+              </Col>
+              <Col span={12}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>จำนวนเงินที่เติม</span>} name="total">
+                  <Input
+                    readOnly
+                    placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)"
+                    style={{
+                      backgroundColor: '#f5f5f5',
+                      color: '#000',
+                      fontWeight: 'bold',
+                      width: 268,
+                      height: 40,
+                      fontSize: 14
+                    }}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>สถานีบริการน้ำมัน</span>} name="station">
+                  <Select placeholder="สถานีบริการน้ำมัน" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                    <Option value="ptt">ปตท.</Option>
+                    <Option value="บางจาก">บางจาก</Option>
+                    <Option value="เชลล์">เชลล์</Option>
+                    <Option value="เเอสโซ่">เอสโซ่</Option>
+                    <Option value="คาลเท็กซ์">คาลเท็กซ์</Option>
+                    <Option value="พีที">พีที</Option>
+                    <Option value="ซัลโก้">ซัลโก้</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
+
+
 
           {/* 🔘 ปุ่มกดด้านล่าง */}
           <Row justify="center" gutter={16} style={{ marginTop: 32 }}>
             <Col>
-              <Button size="large" style={{ padding: '12px 47px', fontSize: '16px', height: '48px', borderRadius: '8px' }}>ยกเลิก</Button>
+              <Button
+                size="large"
+                style={{
+                  width: '120px',
+                  height: '40px',
+                  fontSize: '14px',
+                  borderRadius: '8px'
+                }}
+              >
+                ยกเลิก
+              </Button>
             </Col>
             <Col>
               <Button
@@ -194,9 +252,9 @@ export default function Home() {
                 disabled={!isFormValid}
                 onClick={handleSubmit}
                 style={{
-                  padding: '12px 47px',
-                  fontSize: '16px',
-                  height: '48px',
+                  width: '120px',
+                  height: '40px',
+                  fontSize: '14px',
                   borderRadius: '8px',
                   opacity: isFormValid ? 1 : 0.5,
                   cursor: isFormValid ? 'pointer' : 'not-allowed'
@@ -206,6 +264,9 @@ export default function Home() {
               </Button>
             </Col>
           </Row>
+
+
+
         </Form>
       </div>
     </ConfigProvider>

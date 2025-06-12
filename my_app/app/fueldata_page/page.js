@@ -107,21 +107,7 @@ export default function Home() {
         onAddClick={() => setIsDrawerOpen(true)}
       />
 
-      <Drawer
-        title="สร้างรายการน้ำมัน"
-        placement="right"
-        open={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-        width={600}
-      >
-        <FuelForm
-          onSubmit={(newItem) => {
-            handleAddFuel(newItem);
-            setIsDrawerOpen(false);
-          }}
-          onCancel={() => setIsDrawerOpen(false)}
-        />
-      </Drawer>
+      
     </main>
   );
 }
