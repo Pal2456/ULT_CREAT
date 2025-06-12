@@ -65,7 +65,7 @@ export default function FuelTable({ data, pagination, onAdd }) {
                 gap: '8px',
                 height: '36px',
                 padding: '0 12px',
-                fontSize: '16px',
+                fontSize: '12px',
                 fontFamily: 'Prompt, sans-serif',
                 fontWeight: 500,
                 color: '#FFFFFF',
@@ -73,7 +73,7 @@ export default function FuelTable({ data, pagination, onAdd }) {
               icon={
                 <PlusCircleOutlined
                   style={{
-                    fontSize: '18px',
+                    fontSize: '16px',
                     fontWeight: 'bold',
                     strokeWidth: 3,
                     color: 'white',
