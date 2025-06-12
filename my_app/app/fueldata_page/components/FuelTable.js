@@ -90,19 +90,65 @@ export default function FuelTable({ data, pagination, onAdd }) {
       {/* ✅ Drawer popup สำหรับสร้างฟอร์ม */}
       <Drawer
         placement="right"
-        onClose={handleCloseDrawer}
         open={isDrawerOpen}
+        onClose={handleCloseDrawer}
         width={640}
-        height={852}
-         bodyStyle={{
-          overflow: 'hidden',
-          height: '100vh',
+        title={null}
+        closable={false}
+        headerStyle={{ display: 'none' }}
+        style={{
+          background: '#fff',
+          boxShadow: 'none'
         }}
-
+        bodyStyle={{
+          padding: 24,
+          paddingTop: 16,
+          height: '100vh',
+          overflowY: 'auto'
+        }}
       >
-        {/* 📋 ส่ง function onSubmit ไปยัง FuelForm */}
+        {/* Custom Top Header Row */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 8
+        }}>
+          <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#000' }}>
+            สร้างรายการน้ำมัน
+          </div>
+          <Button
+            type="text"
+            onClick={handleCloseDrawer}
+            style={{
+              fontSize: '20px',
+              fontWeight: 'bold',
+              color: '#000',
+              lineHeight: 1,
+              padding: 0
+            }}
+          >
+            ✕
+          </Button>
+        </div>
+
+        {/* Divider Line */}
+        <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginBottom: 20 }} />
+
+        {/* 👉 Form continues below here */}
         <FuelForm onSubmit={handleFormSubmit} onCancel={handleCloseDrawer} />
+
       </Drawer>
+
+
+
+
+
+
+
+
+
+
     </div>
   );
 }

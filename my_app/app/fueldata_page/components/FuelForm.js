@@ -83,20 +83,24 @@ export default function Home() {
     <ConfigProvider theme={customTheme}>
       <div
         style={{
-          width: '600px', height: '852px', margin: '40px auto',
-          background: '#fff', padding: 24, borderRadius: 12,
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)', overflowY: 'auto',
-          display: 'flex', flexDirection: 'column'
+          width: '100%',          // full width of drawer
+          maxWidth: '600px',      // optional limit
+          
+          
+          background: '#fff',
+          
+          
+          
+          
         }}
       >
-        {/* 🔰 หัวเรื่อง */}
-        <Row justify="space-between" align="middle" style={{ marginBottom: 15, width: '100%' }}>
-          <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#000' }}>สร้างรายการน้ำมัน</div>
-          <Button type="text" style={{ color: '#000', fontSize: '90px', fontWeight: 'bold', lineHeight: 1 }}></Button>
-        </Row>
+        
+        
 
-        {/* 🔻 เส้นคั่น */}
-        <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginBottom: 20 }} />
+
+        
+
+
 
         {/* ✅ ฟอร์มหลัก */}
         <Form form={form} layout="vertical" onValuesChange={onValuesChange}>
@@ -104,18 +108,15 @@ export default function Home() {
           {/* 🔹 ส่วนที่ 1: ข้อมูลรถและคนขับ */}
           <div
             style={{
-              backgroundColor: '#7B41B31A',
-              color: '#8000b3',
-              width: '552px',
-              height: '30px',
-              padding: '0 16px',
-              borderRadius: '8px',
+              backgroundColor: '#EBDDFF',      // softer purple for clarity
+              color: '#7B41B3',                // text color
+              padding: '10px 20px',           // increase vertical + horizontal padding
+              borderRadius: '10px',           // rounder corners
               fontWeight: 600,
-              fontSize: '14px',
-              display: 'flex',
-              alignItems: 'center',
-              borderBottom: '1px solid #e0e0e0',
-              gap: '8px'
+              fontSize: '16px',               // bigger font
+              marginBottom: '16px',
+              width: '100%',                  // full width
+              boxSizing: 'border-box',        // prevent overflow
             }}
           >
             ข้อมูลรถและคนขับ
@@ -151,18 +152,15 @@ export default function Home() {
           {/* 🔹 ส่วนที่ 2: ข้อมูลการเติมน้ำมัน */}
           <div
             style={{
-              backgroundColor: '#7B41B31A',
-              color: '#8000b3',
-              width: '552px',
-              height: '30px',
-              padding: '0 16px',
-              borderRadius: '8px',
+              backgroundColor: '#EBDDFF',      // softer purple for clarity
+              color: '#7B41B3',                // text color
+              padding: '10px 20px',           // increase vertical + horizontal padding
+              borderRadius: '10px',           // rounder corners
               fontWeight: 600,
-              fontSize: '14px', // Adjusted font size for consistency
-              display: 'flex',
-              alignItems: 'center',
-              borderBottom: '1px solid #e0e0e0',
-              gap: '8px'
+              fontSize: '16px',               // bigger font
+              marginBottom: '16px',
+              width: '100%',                  // full width
+              boxSizing: 'border-box',        // prevent overflow
             }}
           >
             ข้อมูลการเติมน้ำมัน
@@ -230,45 +228,55 @@ export default function Home() {
 
 
 
-          {/* 🔘 ปุ่มกดด้านล่าง */}
-          <Row justify="center" gutter={16} style={{ marginTop: 32 }}>
-            <Col>
-              <Button
-                size="large"
-                style={{
-                  width: '120px',
-                  height: '40px',
-                  fontSize: '14px',
-                  borderRadius: '8px'
-                }}
-              >
-                ยกเลิก
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                size="large"
-                type="primary"
-                disabled={!isFormValid}
-                onClick={handleSubmit}
-                style={{
-                  width: '120px',
-                  height: '40px',
-                  fontSize: '14px',
-                  borderRadius: '8px',
-                  opacity: isFormValid ? 1 : 0.5,
-                  cursor: isFormValid ? 'pointer' : 'not-allowed'
-                }}
-              >
-                สร้าง
-              </Button>
-            </Col>
-          </Row>
+          {/* 🔘 ปุ่มกดด้านล่าง แบบติดขอบล่างและมีเส้นคั่น */}
+          </Form>
 
+          {/* Footer Actions */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: '100%',
+              borderTop: '1px solid #e0e0e0',
+              backgroundColor: '#f5f5f5',
+              padding: '16px 0',
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '16px'
+            }}
+          >
+            <Button
+              size="large"
+              style={{
+                width: '120px',
+                height: '40px',
+                fontSize: '14px',
+                borderRadius: '8px'
+              }}
+            >
+              ยกเลิก
+            </Button>
+            <Button
+              size="large"
+              type="primary"
+              disabled={!isFormValid}
+              onClick={handleSubmit}
+              style={{
+                width: '120px',
+                height: '40px',
+                fontSize: '14px',
+                borderRadius: '8px',
+                opacity: isFormValid ? 1 : 0.5,
+                cursor: isFormValid ? 'pointer' : 'not-allowed'
+              }}
+            >
+              สร้าง
+            </Button>
+          </div>
 
+          </div> {/* close main form container */}
+          </ConfigProvider>
 
-        </Form>
-      </div>
-    </ConfigProvider>
   );
 }
