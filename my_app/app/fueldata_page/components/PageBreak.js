@@ -1,106 +1,63 @@
 'use client';
 
-export default function PageBreak({ totalItems, itemsPerPage, currentPage, onPageChange, onItemsPerPageChange }) {
-    //คำนวณจำนวนต่อหนา้
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
+import { Pagination, Space, Typography } from 'antd';
 
-    const handlePageChange = (page) => {
-        if (page >= 1 && page <= totalPages) {
-            onPageChange(page); //from page.js
-        }
-    };
+const { Text } = Typography;
 
-    const renderPageNumbers = () => {
-        const pageNumbers = [];
-        const maxPagesToShow = 10;
+export default function PageBreak({
+  totalItems,
+  itemsPerPage,
+  currentPage,
+  onPageChange,
+  onItemsPerPageChange,
+}) {
+  return (
+    <>
+      <Space size="middle" align="center" style={{ flexWrap: 'wrap', width: '100%' }} className="custom-pagination">
+        <Text style={{ color: '#2B2C30' }}>{totalItems} Total items</Text>
 
-        if (totalPages <= maxPagesToShow) {
-            for (let i = 1; i <= totalPages; i++) {
-                pageNumbers.push(i);
-            }
-        } else {
-            let startPage = Math.max(1, currentPage - 4);
-            let endPage = Math.min(totalPages, currentPage + 5);
+        <Pagination
+          current={currentPage}
+          total={totalItems}
+          pageSize={itemsPerPage}
+          onChange={onPageChange}
+          showSizeChanger
+          onShowSizeChange={(page, size) => onItemsPerPageChange(size)}
+          pageSizeOptions={['10', '20', '50']}
+        />
+      </Space>
 
-            if (currentPage < 5) {
-                startPage = 1;
-                endPage = 10;
-            } else if (currentPage > totalPages - 5) {
-                startPage = totalPages - 9;
-                endPage = totalPages;
-            }
-
-            if (startPage > 1) {
-                pageNumbers.push(1);
-                if (startPage > 2) {
-                    pageNumbers.push('...');
-                }
-            }
-
-            for (let i = startPage; i <= endPage; i++) {
-                pageNumbers.push(i);
-            }
-
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    pageNumbers.push('...');
-                }
-                pageNumbers.push(totalPages);
-            }
+      <style jsx global>{`
+        /* Active page */
+        .custom-pagination .ant-pagination-item-active {
+          background-color: #7B41B3;
+          border-color: #7B41B3;
         }
 
+        .custom-pagination .ant-pagination-item-active a {
+          color: white !important;
+        }
 
-        return pageNumbers.map((number, index) =>
-            typeof number === 'number' ? (
-                <button
-                    key={index}
-                    onClick={() => handlePageChange(number)}
-                    className={`px-4 py-2 text-sm ${currentPage === number ? 'bg-purple-600 text-white' : 'bg-white text-gray-700'} border border-gray-300 rounded-md hover:bg-gray-50`}
-                >
-                    {number}
-                </button>
-            ) : (
-                <span key={index} className="px-4 py-2 text-sm text-gray-500">
-                    {number}
-                </span>
-            )
-        );
-    };
+        /* Hover on page item */
+        .custom-pagination .ant-pagination-item:hover {
+          border-color: #7B41B3;
+        }
 
-    
-    return (
-        <div className="mt-6 mr-auto flex items-center space-x-2">
-            <p className="text-sm text-gray-700">
-                {totalItems} Total Items
-            </p>
-            <div className="mr-auto flex items-center space-x-2">
-                <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="px-4 py-2 text-sm bg-white text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
-                >
-                    &lt;
-                </button>
-                {renderPageNumbers()}
-                <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages || totalPages === 0}
-                    className="px-4 py-2 text-sm bg-white text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
-                >
-                    &gt;
-                </button>
-            </div>
-            <div>
-                 <select
-                    value={itemsPerPage} //from page.js
-                    onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-                    className="pl-2 pr-1 py-2 text-base text-sm bg-white text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50"
-                >
-                    <option value={10}>10/Page</option>
-                    <option value={20}>20/Page</option>
-                    <option value={50}>50/Page</option>
-                </select>
-            </div>
-        </div>
-    );
+        /* Default page item color */
+        .custom-pagination .ant-pagination-item a {
+          color: #2B2C30;
+        }
+
+        /* Prompt font for dropdown */
+        .custom-pagination .ant-pagination-options {
+          font-family: 'Prompt', sans-serif;
+        }
+
+        /* Optional: change dropdown arrow color */
+        .custom-pagination .ant-select-selector {
+          color: #2B2C30;
+        }
+      `}</style>
+    </>
+  );
 }
