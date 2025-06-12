@@ -17,7 +17,7 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
       <Card style={{ marginBottom: 24 }}>
         <Row gutter={[16, 16]} align="bottom">
           <Col xs={24} sm={12} md={6}>
-            <Text style={{ display: 'block', marginBottom: 4 }}>ค้นหา</Text>
+            <Text style={{ display: 'block', marginBottom: 4}}>ค้นหา</Text>
             <Input
               placeholder="ทะเบียน"
               prefix={<SearchOutlined style={{ color: 'rgba(43, 44, 48, 0.5)' }} />}
@@ -84,14 +84,6 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
         .uniform-height {
           height: 40px !important;
         }
-
-        .uniform-height input {
-          height: 40px !important;
-          line-height: 40px !important;
-          padding-top: 6px !important; /* ปรับแนวตั้งของ placeholder */
-        }
-
-        
 
         .custom-placeholder input::placeholder {
           color: rgba(43, 44, 48, 0.5) !important;

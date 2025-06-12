@@ -22,7 +22,7 @@ export default function PageBreak({
           pageSize={itemsPerPage}
           onChange={onPageChange}
           showSizeChanger
-          onShowSizeChange={(page, size) => onItemsPerPageChange(size)}
+          onShowSizeChange={(_page, size) => onItemsPerPageChange(size)}
           pageSizeOptions={['10', '20', '50']}
         />
       </Space>
