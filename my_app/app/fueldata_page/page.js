@@ -1,12 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { Drawer } from 'antd';
+import { Layout, Typography, Drawer } from 'antd';
 import Header from './components/Header';
 import FuelTable from './components/FuelTable';
 import PageBreak from './components/PageBreak';
-import FuelForm from './components/FuelForm'; // <== ต้องสร้างไว้แยก
+import FuelForm from './components/FuelForm';
 import { fueldata as initialFuelData } from './data/fueldata';
+
+const { Content } = Layout;
+const { Title } = Typography;
 
 export default function Home() {
   const [fuelList, setFuelList] = useState(initialFuelData);
@@ -32,22 +35,22 @@ export default function Home() {
   };
 
   const handleAddFuel = (newItem) => {
-  const newId = fuelList.length ? fuelList[fuelList.length - 1].id + 1 : 1;
-  const formattedItem = {
-    id: newId,
-    date: formatDateTime(newItem.datetime), // custom function
-    licensePlate: newItem.plate,
-    vehicleType: newItem.carType,
-    driverName: newItem.driver,
-    fuelType: newItem.fuelType,
-    liters: Number(newItem.liters),
-    pricePerLiter: Number(newItem.pricePerLiter),
-    totalCost: Number(newItem.total),
-    status: newItem.station,
+    const newId = fuelList.length ? fuelList[fuelList.length - 1].id + 1 : 1;
+    const formattedItem = {
+      id: newId,
+      date: formatDateTime(newItem.datetime),
+      licensePlate: newItem.plate,
+      vehicleType: newItem.carType,
+      driverName: newItem.driver,
+      fuelType: newItem.fuelType,
+      liters: Number(newItem.liters),
+      pricePerLiter: Number(newItem.pricePerLiter),
+      totalCost: Number(newItem.total),
+      status: newItem.station,
+    };
+    setFuelList(prev => [...prev, formattedItem]);
+    console.log('เพิ่มรายการใหม่:', formattedItem);
   };
-  setFuelList(prev => [...prev, formattedItem]);
-  console.log('เพิ่มรายการใหม่:', formattedItem);
-};
 
   const filteredData = fuelList.filter(item => {
     const datePart = item.date.split(' ')[0];
@@ -80,34 +83,50 @@ export default function Home() {
   );
 
   return (
-    <main className="min-h-screen bg-gray-100 p-3">
-      <h1 className="text-2xl font-bold mb-6 text-black">น้ำมัน</h1>
+    <Layout style={{ minHeight: '100vh', background: '#f5f5f5', padding: 24 }}>
+      <Content>
+      <Title level={3} style={{ fontSize: '20px', marginBottom: 24, color: '#2B2C30' }}>น้ำมัน</Title>
 
-      <Header
-        onSearch={setSearchTerm}
-        onFuelTypeChange={setFuelType}
-        onDateChange={setDate}
-        onClear={handleClearFilters}
-        searchTerm={searchTerm}
-        fuelType={fuelType}
-        dateKey={dateKey}
-      />
+        <Header
+          onSearch={setSearchTerm}
+          onFuelTypeChange={setFuelType}
+          onDateChange={setDate}
+          onClear={handleClearFilters}
+          searchTerm={searchTerm}
+          fuelType={fuelType}
+          dateKey={dateKey}
+        />
 
-      <FuelTable
-        data={paginatedData}
-        pagination={
-          <PageBreak
-            totalItems={filteredData.length}
-            itemsPerPage={itemsPerPage}
-            currentPage={currentPage}
-            onPageChange={setCurrentPage}
-            onItemsPerPageChange={handleItemsPerPageChange}
+        <FuelTable
+          data={paginatedData}
+          pagination={
+            <PageBreak
+              totalItems={filteredData.length}
+              itemsPerPage={itemsPerPage}
+              currentPage={currentPage}
+              onPageChange={setCurrentPage}
+              onItemsPerPageChange={handleItemsPerPageChange}
+            />
+          }
+          onAddClick={() => setIsDrawerOpen(true)}
+        />
+
+        <Drawer
+          title="สร้างรายการน้ำมัน"
+          placement="right"
+          open={isDrawerOpen}
+          onClose={() => setIsDrawerOpen(false)}
+          width={600}
+        >
+          <FuelForm
+            onSubmit={(newItem) => {
+              handleAddFuel(newItem);
+              setIsDrawerOpen(false);
+            }}
+            onCancel={() => setIsDrawerOpen(false)}
           />
-        }
-        onAddClick={() => setIsDrawerOpen(true)}
-      />
-
-      
-    </main>
+        </Drawer>
+      </Content>
+    </Layout>
   );
 }
