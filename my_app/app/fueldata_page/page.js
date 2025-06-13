@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Layout, Typography, Drawer } from 'antd';
+import { Layout, Typography, Drawer, ConfigProvider } from 'antd';
 import Header from './components/Header';
 import FuelTable from './components/FuelTable';
 import PageBreak from './components/PageBreak';
@@ -9,6 +9,29 @@ import FuelForm from './components/FuelForm';
 import { fueldata as initialFuelData } from './data/fueldata';
 
 const { Content } = Layout;
+const customTheme = {
+  components: {
+    Input:{
+      colorPrimaryHover: '#7B41B3',
+      colorPrimary: '#7B41B3',
+    },
+
+    Select: {
+      colorPrimaryHover: '#7B41B3',
+      colorPrimary: '#7B41B3',
+    },
+
+    DatePicker: {
+      colorPrimaryHover: '#7B41B3', 
+      colorPrimary: '#7B41B3',
+    },
+
+    // btn: {
+    //   colorPrimaryHover: '#7B41B3', 
+    //   colorPrimary: '#7B41B3',
+    // }
+  }
+};
 const { Title } = Typography;
 
 export default function Home() {
@@ -83,50 +106,52 @@ export default function Home() {
   );
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#f5f5f5', padding: 24 }}>
-      <Content>
-      <Title level={3} style={{ fontSize: '20px', marginBottom: 24, color: '#2B2C30' }}>น้ำมัน</Title>
+    <ConfigProvider theme={customTheme}>
+      <Layout style={{ minHeight: '100vh', background: '#f5f5f5', padding: 24 }}>
+        <Content>
+        <Title level={3} style={{ fontSize: '20px', marginBottom: 24, color: '#2B2C30' }}>น้ำมัน</Title>
 
-        <Header
-          onSearch={setSearchTerm}
-          onFuelTypeChange={setFuelType}
-          onDateChange={setDate}
-          onClear={handleClearFilters}
-          searchTerm={searchTerm}
-          fuelType={fuelType}
-          dateKey={dateKey}
-        />
-
-        <FuelTable
-          data={paginatedData}
-          pagination={
-            <PageBreak
-              totalItems={filteredData.length}
-              itemsPerPage={itemsPerPage}
-              currentPage={currentPage}
-              onPageChange={setCurrentPage}
-              onItemsPerPageChange={handleItemsPerPageChange}
-            />
-          }
-          onAddClick={() => setIsDrawerOpen(true)}
-        />
-
-        <Drawer
-          title="สร้างรายการน้ำมัน"
-          placement="right"
-          open={isDrawerOpen}
-          onClose={() => setIsDrawerOpen(false)}
-          width={600}
-        >
-          <FuelForm
-            onSubmit={(newItem) => {
-              handleAddFuel(newItem);
-              setIsDrawerOpen(false);
-            }}
-            onCancel={() => setIsDrawerOpen(false)}
+          <Header
+            onSearch={setSearchTerm}
+            onFuelTypeChange={setFuelType}
+            onDateChange={setDate}
+            onClear={handleClearFilters}
+            searchTerm={searchTerm}
+            fuelType={fuelType}
+            dateKey={dateKey}
           />
-        </Drawer>
-      </Content>
-    </Layout>
+
+          <FuelTable
+            data={paginatedData}
+            pagination={
+              <PageBreak
+                totalItems={filteredData.length}
+                itemsPerPage={itemsPerPage}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+                onItemsPerPageChange={handleItemsPerPageChange}
+              />
+            }
+            onAddClick={() => setIsDrawerOpen(true)}
+          />
+
+          <Drawer
+            title="สร้างรายการน้ำมัน"
+            placement="right"
+            open={isDrawerOpen}
+            onClose={() => setIsDrawerOpen(false)}
+            width={600}
+          >
+            <FuelForm
+              onSubmit={(newItem) => {
+                handleAddFuel(newItem);
+                setIsDrawerOpen(false);
+              }}
+              onCancel={() => setIsDrawerOpen(false)}
+            />
+          </Drawer>
+        </Content>
+      </Layout>
+    </ConfigProvider>
   );
 }
