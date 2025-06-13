@@ -4,19 +4,23 @@ import { useState } from 'react';
 import { Button, Row, Col, Drawer, Typography, Card, Table } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import FuelForm from './FuelForm';
+import FuelDetailDrawer from './FuelDetailDrawer';
 
 const { Title } = Typography;
 
 export default function FuelTable({ data, pagination, onAdd }) {
+  // 🔧 สร้างรายการใหม่
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
   const handleCreateNew = () => setIsDrawerOpen(true);
   const handleCloseDrawer = () => setIsDrawerOpen(false);
-
   const handleFormSubmit = (newItem) => {
     onAdd(newItem);
     setIsDrawerOpen(false);
   };
+
+  // 🔎 ดูรายละเอียดรายการ
+  const [selectedFuel, setSelectedFuel] = useState(null);
+  const [isDetailDrawerOpen, setIsDetailDrawerOpen] = useState(false);
 
   const columns = [
     { title: 'วันที่เติม', dataIndex: 'date', key: 'date' },
@@ -77,13 +81,14 @@ export default function FuelTable({ data, pagination, onAdd }) {
                 />
               }
             >
-            <span style={{ fontWeight: 400, fontFamily: 'Prompt, sans-serif', fontSize: '12px' }}>
-              สร้างรายการน้ำมัน
-            </span>
+              <span style={{ fontWeight: 400, fontFamily: 'Prompt, sans-serif', fontSize: '12px' }}>
+                สร้างรายการน้ำมัน
+              </span>
             </Button>
           </Col>
         </Row>
 
+        {/* 🔄 ตาราง */}
         <Table
           dataSource={data}
           columns={columns}
@@ -92,65 +97,75 @@ export default function FuelTable({ data, pagination, onAdd }) {
           scroll={{ x: 'max-content' }}
           className="custom-table"
           style={{ fontSize: '12px', color: '#2B2C30' }}
+          onRow={(record) => ({
+            onClick: () => {
+              setSelectedFuel(record);
+              setIsDetailDrawerOpen(true);
+            },
+          })}
         />
 
+        {/* 🔢 Pagination */}
         <div style={{ marginTop: 24, borderTop: '1px solid #f0f0f0', paddingTop: 16 }}>
           {pagination}
         </div>
 
-        {/* ✅ Drawer popup สำหรับสร้างฟอร์ม */}
-      <Drawer
-        placement="right"
-        open={isDrawerOpen}
-        onClose={handleCloseDrawer}
-        width={640}
-        title={null}
-        closable={false}
-        headerStyle={{ display: 'none' }}
-        style={{
-          background: '#fff',
-          boxShadow: 'none'
-        }}
-        bodyStyle={{
-          padding: 24,
-          paddingTop: 16,
-          height: '100vh',
-          overflowY: 'auto'
-        }}
-      >
-        {/* Custom Top Header Row */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: 8
-        }}>
-          <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#000' }}>
-            สร้างรายการน้ำมัน
+        {/* ➕ Drawer: สร้างรายการ */}
+        <Drawer
+          placement="right"
+          open={isDrawerOpen}
+          onClose={handleCloseDrawer}
+          width={640}
+          title={null}
+          closable={false}
+          headerStyle={{ display: 'none' }}
+          style={{
+            background: '#fff',
+            boxShadow: 'none'
+          }}
+          bodyStyle={{
+            padding: 24,
+            paddingTop: 16,
+            height: '100vh',
+            overflowY: 'auto'
+          }}
+        >
+          {/* Custom Header */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: 8
+          }}>
+            <div style={{ fontSize: '16px', fontWeight: 'bold', color: '#000' }}>
+              สร้างรายการน้ำมัน
+            </div>
+            <Button
+              type="text"
+              onClick={handleCloseDrawer}
+              style={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+                color: '#000',
+                lineHeight: 1,
+                padding: 0
+              }}
+            >
+              ✕
+            </Button>
           </div>
-          <Button
-            type="text"
-            onClick={handleCloseDrawer}
-            style={{
-              fontSize: '20px',
-              fontWeight: 'bold',
-              color: '#000',
-              lineHeight: 1,
-              padding: 0
-            }}
-          >
-            ✕
-          </Button>
-        </div>
 
-        {/* Divider Line */}
-        <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginBottom: 20 }} />
+          <div style={{ height: '1px', backgroundColor: '#e0e0e0', width: '100%', marginBottom: 20 }} />
 
-        {/* 👉 Form continues below here */}
-        <FuelForm onSubmit={handleFormSubmit} onCancel={handleCloseDrawer} />
+          <FuelForm onSubmit={handleFormSubmit} onCancel={handleCloseDrawer} />
+        </Drawer>
 
-
-      </Drawer>
+        {/* 👁️‍🗨️ Drawer: ดูรายละเอียด */}
+        <FuelDetailDrawer
+          open={isDetailDrawerOpen}
+          onClose={() => setIsDetailDrawerOpen(false)}
+          data={selectedFuel}
+        />
       </Card>
 
       <style jsx global>{`
