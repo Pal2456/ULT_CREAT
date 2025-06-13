@@ -16,7 +16,7 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
     <>
       <Card style={{ marginBottom: 24 }}>
         <Row gutter={[16, 16]} align="bottom">
-          <Col xs={24} sm={12} md={5}>
+          <Col xs={24} sm={12} md={7}>
             <Text style={{ display: 'block', marginBottom: 4}}>ค้นหา</Text>
             <Input
               placeholder="ทะเบียน"
@@ -28,7 +28,7 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
             />
           </Col>
 
-          <Col xs={24} sm={12} md={4}>
+          <Col xs={24} sm={12} md={6}>
             <Text style={{ display: 'block', marginBottom: 4 }}>ประเภทน้ำมัน</Text>
             <Select
               placeholder="ทั้งหมด"
@@ -44,7 +44,7 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
             </Select>
           </Col>
 
-          <Col xs={24} sm={12} md={4}>
+          <Col xs={24} sm={12} md={6}>
             <Text style={{ display: 'block', marginBottom: 4 }}>วันที่</Text>
             <RangePicker
               key={dataKey}
@@ -55,7 +55,7 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
             />
           </Col>
 
-          <Col xs={24} sm={12} md={6}>
+          <Col xs={24} sm={12} md={3}>
             <Text style={{ display: 'block', marginBottom: 4, visibility: 'hidden' }}>placeholder</Text>
             <Button
               icon={
