@@ -112,7 +112,7 @@ export default function FuelTable({ data, pagination, onAdd }) {
 
         {/* ➕ Drawer: สร้างรายการ */}
         <Drawer
-          placement="right"
+          placement="rightleft"
           open={isDrawerOpen}
           onClose={handleCloseDrawer}
           width={640}
