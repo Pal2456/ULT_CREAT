@@ -36,8 +36,8 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
               onChange={onFuelTypeChange}
               allowClear
               className="uniform-height custom-select"
-              dropdownStyle={{ color: '#2B2C30' }}
               style={{ width: '100%' }}
+              dropdownClassName="fuel-type-select-dropdown"
             >
               <Option value="ดีเซล">ดีเซล</Option>
               <Option value="เบนซิน">เบนซิน</Option>

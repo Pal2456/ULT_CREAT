@@ -65,3 +65,8 @@ a {
   font-size: 16px !important;
   color: #000 !important;
 }
+
+.fuel-type-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+  background-color: #76108F !important; /* สีม่วง */
+  color: white !important; /* text */
+}
