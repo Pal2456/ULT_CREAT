@@ -77,22 +77,9 @@ export default function FuelForm({ onSubmit, onCancel }) {
         style={{
           width: '100%',          // full width of drawer
           maxWidth: '600px',      // optional limit
-          
-          
           background: '#fff',
-          
-          
-          
-          
         }}
       >
-        
-        
-
-
-        
-
-
 
         {/* ✅ ฟอร์มหลัก */}
         <Form form={form} layout="vertical" onValuesChange={onValuesChange}>
