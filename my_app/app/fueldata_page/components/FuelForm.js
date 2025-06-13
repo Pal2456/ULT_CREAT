@@ -16,7 +16,7 @@ export default function FuelForm({ onSubmit, onCancel }) {
   // 🎨 Custom Theme สำหรับเปลี่ยนสีหลักของ Ant Design
   const customTheme = {
     token: {
-      colorPrimary: '#7B41B3', // สีม่วงหลัก
+      colorPrimary: '#76108F', // สีม่วงหลัก
       fontSize: 16
     },
     components: {
@@ -117,7 +117,8 @@ export default function FuelForm({ onSubmit, onCancel }) {
             <Row gutter={16}>
               <Col span={12}>
                 <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>ประเภทรถ</span>} name="carType">
-                  <Select placeholder="ประเภทรถ" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                  <Select placeholder="ประเภทรถ" allowClear style={{ width: 268, height: 40, fontSize: 14 }}
+                  dropdownClassName="fuel-type-select-dropdown">
                     <Option value="4ล้อ">4 ล้อ</Option>
                     <Option value="6ล้อ">6 ล้อ</Option>
                     <Option value="10ล้อ">10 ล้อ</Option>
@@ -126,14 +127,16 @@ export default function FuelForm({ onSubmit, onCancel }) {
               </Col>
               <Col span={12}>
                 <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>ทะเบียน</span>} name="plate">
-                  <Select placeholder="ทะเบียน" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                  <Select placeholder="ทะเบียน" allowClear style={{ width: 268, height: 40, fontSize: 14 }}
+                  dropdownClassName="fuel-type-select-dropdown">
                     <Option value="1กข1234">1กข1234</Option>
                   </Select>
                 </Form.Item>
               </Col>
               <Col span={24}>
                 <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>ชื่อคนขับ</span>} name="driver">
-                  <Select placeholder="ชื่อคนขับ" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                  <Select placeholder="ชื่อคนขับ" allowClear style={{ width: 268, height: 40, fontSize: 14 }}
+                  dropdownClassName="fuel-type-select-dropdown">
                     <Option value="สมชาย">สมชาย</Option>
                   </Select>
                 </Form.Item>
@@ -171,7 +174,8 @@ export default function FuelForm({ onSubmit, onCancel }) {
               </Col>
               <Col span={12}>
                 <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>ประเภทน้ำมัน</span>} name="fuelType">
-                  <Select placeholder="ประเภทน้ำมัน" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                  <Select placeholder="ประเภทน้ำมัน" allowClear style={{ width: 268, height: 40, fontSize: 14 }}
+                  dropdownClassName="fuel-type-select-dropdown">
                     <Option value="ดีเซล">ดีเซล</Option>
                     <Option value="เบนซิน">เบนซิน</Option>
                   </Select>
@@ -205,7 +209,8 @@ export default function FuelForm({ onSubmit, onCancel }) {
               </Col>
               <Col span={24}>
                 <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>สถานีบริการน้ำมัน</span>} name="station">
-                  <Select placeholder="สถานีบริการน้ำมัน" allowClear style={{ width: 268, height: 40, fontSize: 14 }}>
+                  <Select placeholder="สถานีบริการน้ำมัน" allowClear style={{ width: 268, height: 40, fontSize: 14 }}
+                  dropdownClassName="fuel-type-select-dropdown">
                     <Option value="ptt">ปตท.</Option>
                     <Option value="บางจาก">บางจาก</Option>
                     <Option value="เชลล์">เชลล์</Option>
