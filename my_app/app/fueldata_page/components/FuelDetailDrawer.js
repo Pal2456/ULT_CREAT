@@ -70,7 +70,7 @@ function SectionTitle({ title, style }) {
 // 🔹 Key-Value Pair Row
 function DetailItem({ label, value }) {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, paddingLeft: '20px'}}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, paddingLeft: '16px'}}>
       <Typography.Text style={{ fontFamily: 'Prompt', fontSize: 14, fontWeight: 400, color: '#2B2C30',  }}>{label}</Typography.Text>
       <Typography.Text style={{ fontFamily: 'Prompt', fontSize: 14, fontWeight: 500, color: '#2B2C30' }}>
         {value || '-'}
