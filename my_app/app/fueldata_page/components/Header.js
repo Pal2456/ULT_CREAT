@@ -102,6 +102,14 @@ export default function Header({ onSearch, onFuelTypeChange, onDateChange, onCle
           display: flex;
           align-items: center;
         }
+
+        .fuel-type-select-dropdown {
+          font-family: 'Prompt', sans-serif !important;
+        }
+
+        .custom-select .ant-select-selection-item {
+          font-family: 'Prompt', sans-serif !important;
+        }
       `}</style>
     </>
   );

@@ -57,6 +57,28 @@ export default function PageBreak({
         .custom-pagination .ant-select-selector {
           color: #2B2C30;
         }
+
+        .custom-pagination .ant-select-arrow {
+          transform: rotate(-90deg);
+          transform-origin: center;
+          transition: transform 0.3s ease;
+          color: #2B2C30;
+        }
+
+        .custom-pagination .ant-select-open .ant-select-arrow {
+          transform: rotate(0deg); /* ▼ */
+        }
+
+        .custom-pagination .ant-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-disabled),
+        .custom-pagination .ant-select-dropdown .ant-select-item-option:hover {
+          background-color: #7B41B3 !important;
+          color: white !important;
+        }
+
+        .custom-pagination .ant-select {
+          font-family: 'Prompt', sans-serif !important;
+        }
+          
       `}</style>
     </>
   );

@@ -182,7 +182,7 @@ export default function FuelForm({ onSubmit, onCancel }) {
                 <Form.Item label={<span style={{ fontWeight: 'bold', fontSize: 14 }}>จำนวนเงินที่เติม</span>} name="total">
                   <Input
                     readOnly
-                    placeholder="จำนวนเงินที่เติม (คำนวณอัตโนมัติ)"
+                    placeholder="จำนวนเงินที่เติม"
                     style={{
                       backgroundColor: '#f5f5f5',
                       color: '#000',
@@ -223,7 +223,7 @@ export default function FuelForm({ onSubmit, onCancel }) {
               left: 0,
               width: '100%',
               borderTop: '1px solid #e0e0e0',
-              backgroundColor: '#f5f5f5',
+              backgroundColor: '#fff',
               padding: '16px 0',
               display: 'flex',
               justifyContent: 'center',
